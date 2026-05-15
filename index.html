@@ -22,30 +22,47 @@
 <style>
   /* ============ DESIGN TOKENS ============ */
   :root {
+    /* Backgrounds — page layers */
     --bg-deep: #0A0E18;
     --bg-base: #11161F;
     --bg-elevated: #1A2030;
     --bg-card: #232A3A;
-    --bg-card-hover: #2A3243;
 
+    /* Backgrounds — embedded components (mockups, panels) */
+    --bg-panel: #0F1320;
+    --bg-phone-deep: #1F2533;
+    --bg-phone-base: #161B27;
+
+    /* Borders */
     --border: rgba(255, 255, 255, 0.08);
+    --border-device: rgba(255, 255, 255, 0.12);
     --border-strong: rgba(255, 255, 255, 0.16);
+    --border-faint: rgba(255, 255, 255, 0.06);
 
+    /* Text */
     --text: #F4F5F7;
     --text-secondary: #B0B8C5;
     --text-muted: #7A8294;
 
+    /* Mint accent */
     --mint: #4FB39A;
     --mint-bright: #62C4AA;
     --mint-glow: rgba(79, 179, 154, 0.22);
     --mint-soft: rgba(79, 179, 154, 0.10);
+    --mint-dim: rgba(79, 179, 154, 0.25);
 
+    /* Magenta accent */
     --magenta: #FF3B7A;
     --magenta-glow: rgba(255, 59, 122, 0.35);
     --magenta-soft: rgba(255, 59, 122, 0.12);
+    --magenta-border: rgba(255, 59, 122, 0.40);
 
-    --hot-orange: #FF5722;
-    --amber: #FFB341;
+    /* Warm accent */
+    --amber: #D97B3A;
+
+    /* Error states */
+    --error: #ED6E68;
+    --error-border: #C85050;
 
     --radius-sm: 8px;
     --radius-md: 14px;
@@ -390,11 +407,11 @@
     width: 100%;
     max-width: 340px;
     aspect-ratio: 9 / 19;
-    background: linear-gradient(180deg, #1F2533 0%, #161B27 100%);
+    background: linear-gradient(180deg, var(--bg-phone-deep) 0%, var(--bg-phone-base) 100%);
     border-radius: 42px;
     padding: 12px;
     box-shadow:
-      0 0 0 1.5px rgba(255, 255, 255, 0.08),
+      0 0 0 1.5px var(--border),
       0 28px 56px rgba(0, 0, 0, 0.55),
       0 8px 16px rgba(0, 0, 0, 0.4);
     position: relative;
@@ -412,7 +429,7 @@
     transform: translateX(-50%);
     width: 100px;
     height: 22px;
-    background: #0A0E18;
+    background: var(--bg-deep);
     border-radius: 14px;
     z-index: 5;
   }
@@ -887,8 +904,8 @@
     margin-top: 48px;
   }
   .tv-frame {
-    background: #0F1320;
-    border: 1.5px solid rgba(255,255,255,0.12);
+    background: var(--bg-panel);
+    border: 1.5px solid var(--border-device);
     border-radius: 8px;
     aspect-ratio: 16 / 10;
     position: relative;
@@ -905,7 +922,7 @@
     left: 30%;
     right: 30%;
     height: 6px;
-    background: #11161F;
+    background: var(--bg-base);
     border-radius: 0 0 4px 4px;
   }
   .tv-mode-tag {
@@ -939,9 +956,9 @@
     line-height: 1.4;
   }
   .tv-leaderboard { display: flex; flex-direction: column; gap: 4px; font-family: var(--font-mono); font-size: 10px; }
-  .tv-leaderboard div { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed rgba(255,255,255,0.08); }
+  .tv-leaderboard div { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed var(--border); }
   .tv-leaderboard div:first-child { color: var(--mint); }
-  .tv-vote-bar { background: rgba(255,255,255,0.06); height: 4px; border-radius: 2px; overflow: hidden; }
+  .tv-vote-bar { background: var(--border-faint); height: 4px; border-radius: 2px; overflow: hidden; }
   .tv-vote-bar div { background: var(--mint); height: 100%; }
   .tv-pill {
     display: inline-block;
@@ -1153,7 +1170,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #D97B3A;
+    background: var(--amber);
     flex-shrink: 0;
   }
   @media (max-width: 1024px) {
@@ -1303,8 +1320,8 @@
     align-items: start;
   }
   .dash-frame {
-    background: #11161F;
-    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--bg-base);
+    border: 1px solid var(--border-device);
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 24px 48px rgba(0,0,0,0.5);
@@ -1334,7 +1351,7 @@
     background: var(--border);
   }
   .dash-cell {
-    background: #11161F;
+    background: var(--bg-base);
     padding: 22px;
     display: flex;
     flex-direction: column;
@@ -1368,7 +1385,7 @@
     background: var(--border);
   }
   .dash-chart {
-    background: #11161F;
+    background: var(--bg-base);
     padding: 22px;
     min-height: 220px;
     display: flex;
@@ -1395,7 +1412,7 @@
     border-radius: 2px 2px 0 0;
     min-height: 4px;
   }
-  .dash-chart-bars div.dim { background: rgba(79, 179, 154, 0.25); }
+  .dash-chart-bars div.dim { background: var(--mint-dim); }
   .dash-chart-axis {
     display: flex;
     justify-content: space-between;
@@ -1407,7 +1424,7 @@
     padding-top: 6px;
   }
   .dash-list {
-    background: #11161F;
+    background: var(--bg-base);
     padding: 22px;
     display: flex;
     flex-direction: column;
@@ -1428,7 +1445,7 @@
     font-size: 11px;
     color: var(--text-secondary);
     padding: 6px 0;
-    border-bottom: 1px dashed rgba(255,255,255,0.06);
+    border-bottom: 1px dashed var(--border-faint);
   }
   .dash-tbl-row strong { color: var(--text); font-weight: 500; }
   .dash-tbl-row em { color: var(--mint); font-style: normal; }
@@ -1687,12 +1704,12 @@
   }
   .pilot-form-field input.is-error,
   .pilot-form-field textarea.is-error {
-    border-color: #c0504a;
+    border-color: var(--error-border);
   }
   .pilot-form-error {
     font-family: var(--font-body);
     font-size: 12px;
-    color: #e05a54;
+    color: var(--error);
     margin-top: 4px;
     display: none;
   }
@@ -2132,8 +2149,8 @@
     width: 100%;
     max-width: 720px;
     aspect-ratio: 16 / 9;
-    background: #0A0E18;
-    border: 1.5px solid rgba(255,255,255,0.14);
+    background: var(--bg-deep);
+    border: 1.5px solid var(--border-device);
     border-radius: 10px;
     padding: 22px 26px;
     position: relative;
@@ -2149,7 +2166,7 @@
     left: 30%;
     right: 30%;
     height: 4px;
-    background: #11161F;
+    background: var(--bg-base);
     border-radius: 0 0 3px 3px;
   }
   .tv-screen {
@@ -2228,7 +2245,7 @@
   .tv-music-bar {
     flex: 1;
     height: 6px;
-    background: rgba(255,255,255,0.06);
+    background: var(--border-faint);
     border-radius: 3px;
     overflow: hidden;
   }
@@ -2299,11 +2316,11 @@
     align-items: start;
   }
   .demo-phone {
-    background: linear-gradient(180deg, #1F2533 0%, #161B27 100%);
+    background: linear-gradient(180deg, var(--bg-phone-deep) 0%, var(--bg-phone-base) 100%);
     border-radius: 28px;
     padding: 10px;
     box-shadow:
-      0 0 0 1.5px rgba(255, 255, 255, 0.08),
+      0 0 0 1.5px var(--border),
       0 18px 36px rgba(0, 0, 0, 0.5);
     position: relative;
     width: 100%;
@@ -2323,7 +2340,7 @@
     transform: translateX(-50%);
     width: 76px;
     height: 16px;
-    background: #0A0E18;
+    background: var(--bg-deep);
     border-radius: 10px;
     z-index: 2;
   }
@@ -2485,8 +2502,8 @@
 
   /* Incoming notification */
   .phone-incoming {
-    background: rgba(255, 59, 122, 0.12);
-    border: 1px solid rgba(255, 59, 122, 0.4);
+    background: var(--magenta-soft);
+    border: 1px solid var(--magenta-border);
     border-radius: 8px;
     padding: 12px;
     display: flex;
@@ -2530,8 +2547,8 @@
     transition: all 0.15s;
   }
   .phone-mini-btn:hover { border-color: var(--mint); color: var(--mint); }
-  .phone-mini-btn.danger { border-color: rgba(255, 59, 122, 0.4); color: var(--magenta); }
-  .phone-mini-btn.danger:hover { background: rgba(255, 59, 122, 0.1); }
+  .phone-mini-btn.danger { border-color: var(--magenta-border); color: var(--magenta); }
+  .phone-mini-btn.danger:hover { background: var(--magenta-soft); }
 
   /* Status messages */
   .phone-status {
@@ -2547,13 +2564,13 @@
     margin-top: auto;
   }
   .phone-status.is-success { border-color: var(--mint); color: var(--mint); border-style: solid; }
-  .phone-status.is-blocked { border-color: rgba(255, 59, 122, 0.4); color: var(--magenta); border-style: solid; }
+  .phone-status.is-blocked { border-color: var(--magenta-border); color: var(--magenta); border-style: solid; }
 
   /* Hint */
   .demo-hint {
     margin-top: 32px;
     padding: 14px 18px;
-    background: rgba(79, 179, 154, 0.08);
+    background: var(--mint-soft);
     border-left: 2px solid var(--mint);
     font-family: var(--font-body);
     font-size: 14px;
