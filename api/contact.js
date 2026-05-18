@@ -14,7 +14,7 @@ module.exports = async function handler(req, res) {
     const body = req.body || {};
     const name = (body.name || body.bar || "").trim();
     const email = (body.email || "").trim();
-    const topic = (body.topic || "CrowdConnect Pilotanfrage").trim();
+    const topic = (body.topic || "Crowd.Connect Pilotanfrage").trim();
     const company = (body.company || body.city || "").trim();
     const note = (body.note || "").trim();
     const message = (
@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
       replyTo: email,
       subject: `Neue Kontaktanfrage von ${name} - ${topic}`,
       html: `
-        <h2>Neue Kontaktanfrage ueber CrowdConnect</h2>
+        <h2>Neue Kontaktanfrage ueber Crowd.Connect</h2>
         <p><strong>Name / Location:</strong> ${name}</p>
         <p><strong>E-Mail:</strong> ${email}</p>
         <p><strong>Stadt / Unternehmen:</strong> ${company || "Nicht angegeben"}</p>
@@ -62,7 +62,7 @@ module.exports = async function handler(req, res) {
         <p><strong>Nachricht:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>
         <hr>
-        <p><small>Diese Nachricht wurde ueber das CrowdConnect Kontaktformular gesendet.</small></p>
+        <p><small>Diese Nachricht wurde ueber das Crowd.Connect Kontaktformular gesendet.</small></p>
       `,
     });
 

@@ -1,6 +1,6 @@
 # crowd-connect-website
 
-Pure HTML/CSS/JS single-page marketing site for CrowdConnect — a B2B SaaS platform for bar/venue operators in Germany.
+Pure HTML/CSS/JS single-page marketing site for Crowd.Connect — a B2B SaaS platform for bar/venue operators in Germany.
 
 ## Design Context
 

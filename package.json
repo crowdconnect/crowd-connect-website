@@ -2,7 +2,7 @@
   "name": "crowd-connect-website",
   "version": "1.0.0",
   "private": true,
-  "description": "CrowdConnect marketing site with contact API",
+  "description": "Crowd.Connect marketing site with contact API",
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",
