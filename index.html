@@ -75,6 +75,12 @@
     --font-section: 'Chathura', 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-fast: 140ms;
+    --motion-medium: 260ms;
+    --motion-slow: 520ms;
   }
 
   /* ============ RESET & BASE ============ */
@@ -192,7 +198,12 @@
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 14px;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    transition:
+      background var(--motion-medium) var(--ease-out-quart),
+      color var(--motion-medium) var(--ease-out-quart),
+      border-color var(--motion-medium) var(--ease-out-quart),
+      transform var(--motion-fast) var(--ease-out-quint),
+      box-shadow var(--motion-medium) var(--ease-out-quart);
     cursor: pointer;
     white-space: nowrap;
   }
@@ -202,7 +213,11 @@
   }
   .btn-primary:hover {
     background: var(--mint-bright);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 10px 24px var(--mint-glow);
+  }
+  .btn:active {
+    transform: translateY(0) scale(0.98);
   }
   .btn-secondary {
     background: transparent;
@@ -325,6 +340,18 @@
     position: relative;
     z-index: 2;
     max-width: 860px;
+  }
+  .motion-safe .hero .hero-reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  .motion-safe .hero.is-hero-ready .hero-reveal {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition:
+      opacity 680ms var(--ease-out-quart),
+      transform 680ms var(--ease-out-quart);
+    transition-delay: var(--hero-delay, 0ms);
   }
   .hero h1 {
     font-family: var(--font-section);
@@ -1840,6 +1867,14 @@
     opacity: 0.65;
     pointer-events: none;
   }
+  .pilot-form button.is-loading {
+    box-shadow: 0 0 0 0 var(--mint-glow);
+    animation: submitPulse 1.2s var(--ease-out-quart) infinite;
+  }
+  @keyframes submitPulse {
+    0% { box-shadow: 0 0 0 0 var(--mint-glow); }
+    100% { box-shadow: 0 0 0 14px rgba(79, 179, 154, 0); }
+  }
   .pilot-success-check {
     display: inline-flex;
     align-items: center;
@@ -1869,6 +1904,30 @@
   .pilot-success-body a {
     color: var(--mint);
     text-decoration: none;
+  }
+  .pilot-form-success {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    transition:
+      opacity var(--motion-slow) var(--ease-out-quart),
+      transform var(--motion-slow) var(--ease-out-quart);
+  }
+  .pilot-form-success.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .motion-safe .motion-reveal {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition:
+      opacity var(--motion-slow) var(--ease-out-quart),
+      transform var(--motion-slow) var(--ease-out-quart);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .motion-safe .motion-reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
   .pilot-success-body a:hover {
     text-decoration: underline;
@@ -4528,6 +4587,56 @@
 
 <script>
 (function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.documentElement.classList.add('motion-safe');
+
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    var heroTargets = [
+      hero.querySelector('h1'),
+      hero.querySelector('.hero-sub'),
+      hero.querySelector('.hero-ctas'),
+      hero.querySelector('.hero-proof'),
+      hero.querySelector('.hero-meta')
+    ].filter(Boolean);
+
+    heroTargets.forEach(function(el, index) {
+      el.classList.add('hero-reveal');
+      el.style.setProperty('--hero-delay', String(index * 110) + 'ms');
+    });
+
+    requestAnimationFrame(function() {
+      hero.classList.add('is-hero-ready');
+    });
+  }
+
+  var revealTargets = Array.from(document.querySelectorAll('main section > .container'));
+  revealTargets.forEach(function(el, index) {
+    el.classList.add('motion-reveal');
+    el.style.setProperty('--reveal-delay', String(Math.min(index % 3, 2) * 80) + 'ms');
+  });
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.18,
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  revealTargets.forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
+
+<script>
+(function() {
   var form = document.getElementById('pilotForm');
   var successEl = document.getElementById('pilotSuccess');
   var statusEl = document.getElementById('pilotFormStatus');
@@ -4571,7 +4680,10 @@
     };
 
     try {
-      if (submitBtn) submitBtn.disabled = true;
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('is-loading');
+      }
       statusEl.textContent = 'Anfrage wird gesendet...';
 
       var response = await fetch('/api/contact', {
@@ -4592,11 +4704,17 @@
 
       form.hidden = true;
       successEl.hidden = false;
+      requestAnimationFrame(function() {
+        successEl.classList.add('is-visible');
+      });
     } catch (err) {
       statusEl.textContent = (err && err.message) ? err.message : 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
       statusEl.classList.add('is-error');
     } finally {
-      if (submitBtn) submitBtn.disabled = false;
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+      }
     }
   });
 })();
