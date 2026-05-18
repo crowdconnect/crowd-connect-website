@@ -328,11 +328,13 @@
   }
   .hero h1 {
     font-family: var(--font-section);
-    font-size: 82px;
+    font-size: 94px;
     line-height: 62px;
     letter-spacing: -0.1px;
     margin-bottom: 28px;
-    font-weight: 700;
+    font-weight: 800;
+    padding-top: 27px;
+    padding-bottom: 27px;
   }
   .hero h1 .accent {
     color: var(--mint);
@@ -1271,6 +1273,53 @@
     color: var(--mint);
     letter-spacing: 0.08em;
   }
+  .pkg-plan-help {
+    position: relative;
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: help;
+    line-height: 1.2;
+    border-bottom: 1px dotted rgba(160, 168, 182, 0.7);
+  }
+  .pkg-plan-help:focus-visible {
+    outline: 1px solid var(--mint);
+    outline-offset: 2px;
+    border-bottom-color: transparent;
+  }
+  .pkg-plan-help::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 0;
+    top: calc(100% + 8px);
+    width: min(300px, 72vw);
+    background: #101623;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    letter-spacing: 0;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-2px);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+    pointer-events: none;
+    z-index: 140;
+  }
+  .pkg-plan-help:hover::after,
+  .pkg-plan-help:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
   .pkg-table tbody td {
     padding: 18px 16px;
     border-bottom: 1px solid var(--border);
@@ -1288,14 +1337,17 @@
   .pkg-help {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted rgba(79, 179, 154, 0.65);
-    color: var(--text);
+    margin-left: 6px;
+    border-bottom: 1px dotted rgba(160, 168, 182, 0.7);
+    color: var(--text-muted);
     cursor: help;
     line-height: 1.2;
+    font-size: 11px;
+    font-weight: 500;
   }
   .pkg-help:hover,
   .pkg-help:focus-visible {
-    z-index: 10000;
+    z-index: 40;
   }
   .pkg-help:focus-visible {
     outline: 1px solid var(--mint);
@@ -1319,7 +1371,7 @@
     line-height: 1.4;
     letter-spacing: 0;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-    z-index: 10001;
+    z-index: 140;
     opacity: 0;
     visibility: hidden;
     transform: translateY(2px);
@@ -1773,6 +1825,20 @@
   }
   .pilot-form-success {
     padding: 24px 0 8px;
+  }
+  .pilot-form-status {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 10px;
+    color: var(--text-muted);
+  }
+  .pilot-form-status.is-error {
+    color: var(--error);
+  }
+  .pilot-form button[disabled] {
+    opacity: 0.65;
+    pointer-events: none;
   }
   .pilot-success-check {
     display: inline-flex;
@@ -3852,11 +3918,31 @@
       <thead>
         <tr>
           <th>Feature</th>
-          <th><span class="pkg-name">Basic</span><span class="pkg-price">ab 49&thinsp;EUR/Mo</span></th>
-          <th><span class="pkg-name">Social</span><span class="pkg-price">ab 89&thinsp;EUR/Mo</span></th>
-          <th><span class="pkg-name">Screen</span><span class="pkg-price">ab 129&thinsp;EUR/Mo</span></th>
-          <th><span class="pkg-name">Music</span><span class="pkg-price">ab 79&thinsp;EUR/Mo</span></th>
-          <th><span class="pkg-name">Compliance</span><span class="pkg-price">auf Anfrage</span></th>
+          <th>
+            <span class="pkg-name">Basic</span>
+            <span class="pkg-price">ab 49&thinsp;EUR/Mo</span>
+            <span class="pkg-plan-help" tabindex="0" aria-label="Details zum Paket Basic" data-tooltip="Einstieg fuer digitale Speisekarte und Service-Basisfunktionen. Geeignet fuer kleine Teams, die schnell starten wollen.">Details</span>
+          </th>
+          <th>
+            <span class="pkg-name">Social</span>
+            <span class="pkg-price">ab 89&thinsp;EUR/Mo</span>
+            <span class="pkg-plan-help" tabindex="0" aria-label="Details zum Paket Social" data-tooltip="Zusaetzlich mit Community- und Event-Funktionen wie Bar Map, Event Mode sowie Loyalty und Analytics.">Details</span>
+          </th>
+          <th>
+            <span class="pkg-name">Screen</span>
+            <span class="pkg-price">ab 129&thinsp;EUR/Mo</span>
+            <span class="pkg-plan-help" tabindex="0" aria-label="Details zum Paket Screen" data-tooltip="Fokus auf In-Location Screens: TV Games, Promo-Logik und erweitertes Engagement direkt auf den Displays.">Details</span>
+          </th>
+          <th>
+            <span class="pkg-name">Music</span>
+            <span class="pkg-price">ab 79&thinsp;EUR/Mo</span>
+            <span class="pkg-plan-help" tabindex="0" aria-label="Details zum Paket Music" data-tooltip="Fuer Bars mit Musikfokus: Voting, Player-Steuerung und Event-Features fuer den Abendbetrieb.">Details</span>
+          </th>
+          <th>
+            <span class="pkg-name">Compliance</span>
+            <span class="pkg-price">auf Anfrage</span>
+            <span class="pkg-plan-help" tabindex="0" aria-label="Details zum Paket Compliance" data-tooltip="Spezialpaket fuer rechtssicheren Betrieb inklusive GEMA/GVL Setup und abgestimmter Betriebsprozesse.">Details</span>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -3885,7 +3971,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>Drink&#8209;to&#8209;Table</td>
+          <td>Drink&#8209;to&#8209;Table <span class="pkg-help" tabindex="0" aria-label="Details zu Drink-to-Table" data-tooltip="Gaeste koennen Drinks direkt an andere Tische senden. Inklusive einfacher Uebergabe-Logik fuer Service und Bar.">Details</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-empty">○</span></td>
@@ -3893,7 +3979,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>TV Games &amp; Promo</td>
+          <td>TV Games &amp; Promo <span class="pkg-help" tabindex="0" aria-label="Details zu TV Games und Promo" data-tooltip="Interaktive Screen-Formate fuer Quiz, Aktionen und zeitgesteuerte Promo-Elemente auf TVs in der Location.">Details</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-check">●</span></td>
@@ -3901,7 +3987,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>Music Voting &amp; Player</td>
+          <td>Music Voting &amp; Player <span class="pkg-help" tabindex="0" aria-label="Details zu Music Voting und Player" data-tooltip="Gaeste stimmen Songs mit, waehrend das Team Steuerung und Grenzen fuer den laufenden Betrieb behaelt.">Details</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-empty">○</span></td>
@@ -3925,7 +4011,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>GEMA / GVL Setup</td>
+          <td>GEMA / GVL Setup <span class="pkg-help" tabindex="0" aria-label="Details zu GEMA und GVL Setup" data-tooltip="Unterstuetzung bei Setup, Dokumentation und operativer Einbindung fuer rechtssicheren Musikbetrieb.">Details</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-empty">○</span></td>
@@ -4151,6 +4237,7 @@
             </button>
             <p class="finalcta-note">hello@crowd-connect.de · Ein Service der QR Solutions GmbH</p>
           </div>
+          <p class="pilot-form-status" id="pilotFormStatus" aria-live="polite"></p>
         </form>
         <div class="pilot-form-success" id="pilotSuccess" aria-live="polite" hidden>
           <div class="pilot-success-check" aria-hidden="true">
@@ -4443,16 +4530,20 @@
 (function() {
   var form = document.getElementById('pilotForm');
   var successEl = document.getElementById('pilotSuccess');
-  if (!form || !successEl) return;
+  var statusEl = document.getElementById('pilotFormStatus');
+  if (!form || !successEl || !statusEl) return;
 
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
     var barEl   = form.elements['bar'];
     var cityEl  = form.elements['city'];
     var emailEl = form.elements['email'];
     var noteEl  = form.elements['note'];
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     var valid = true;
+    statusEl.textContent = '';
+    statusEl.classList.remove('is-error');
     [barEl, cityEl, emailEl].forEach(function(el) {
       el.classList.remove('is-error');
       el.removeAttribute('aria-invalid');
@@ -4461,23 +4552,52 @@
     if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
       emailEl.classList.add('is-error'); emailEl.setAttribute('aria-invalid', 'true'); valid = false;
     }
-    if (!valid) return;
+    if (!valid) {
+      statusEl.textContent = 'Bitte pruefe die markierten Felder.';
+      statusEl.classList.add('is-error');
+      return;
+    }
 
     var bar   = barEl.value.trim();
     var city  = cityEl.value.trim();
     var email = emailEl.value.trim();
     var note  = noteEl.value.trim();
+    var payload = {
+      bar: bar,
+      city: city,
+      email: email,
+      note: note,
+      topic: 'CrowdConnect Pilotanfrage'
+    };
 
-    var subject = 'Pilotanfrage: ' + bar + ', ' + city;
-    var body = 'Bar / Location: ' + bar + '\nStadt: ' + city + '\nKontakt-E-Mail: ' + email;
-    if (note) body += '\n\nNachricht:\n' + note;
+    try {
+      if (submitBtn) submitBtn.disabled = true;
+      statusEl.textContent = 'Anfrage wird gesendet...';
 
-    window.location.href = 'mailto:hello@crowd-connect.de?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      var response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
 
-    setTimeout(function() {
+      if (!response.ok) {
+        var errorData = {};
+        try {
+          errorData = await response.json();
+        } catch (_) {}
+        throw new Error(errorData.error || 'Ein Fehler ist aufgetreten.');
+      }
+
       form.hidden = true;
       successEl.hidden = false;
-    }, 500);
+    } catch (err) {
+      statusEl.textContent = (err && err.message) ? err.message : 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
+      statusEl.classList.add('is-error');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 })();
 </script>

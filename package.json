@@ -1,0 +1,16 @@
+{
+  "name": "crowd-connect-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CrowdConnect marketing site with contact API",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1"
+  }
+}
