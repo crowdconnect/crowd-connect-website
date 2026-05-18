@@ -339,7 +339,7 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 860px;
+    max-width: 760px;
   }
   .motion-safe .hero .hero-reveal {
     opacity: 0;
@@ -356,15 +356,18 @@
   .hero h1 {
     font-family: var(--font-section);
     font-size: 94px;
-    line-height: 62px;
+    line-height: 0.92;
     letter-spacing: -0.1px;
     margin-bottom: 28px;
     font-weight: 800;
     padding-top: 27px;
     padding-bottom: 27px;
+    max-width: 640px;
+    text-shadow: 0 4px 16px rgba(10, 14, 24, 0.52);
   }
   .hero h1 .accent {
     color: var(--mint);
+    display: block;
   }
   .hero-meta {
     margin-top: 56px;
@@ -2829,8 +2832,8 @@
 
   <div class="container hero-content">
     <h1>
-      Jeder Tisch kann teilnehmen.<br/>
-      Jeder Screen ein Eventflyer.
+      Jeder Tisch interaktiv.
+      <span class="accent">Jeder Screen Umsatzpotential.</span>
     </h1>
     <p class="hero-sub">
       Eine interaktive Infotainment-Plattform, die Tische, Smartphones und TVs in deiner Bar verbindet.
