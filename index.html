@@ -1226,6 +1226,8 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin-top: 56px;
+    position: relative;
+    z-index: 20;
   }
   .pkg-table {
     width: 100%;
@@ -1275,12 +1277,60 @@
     vertical-align: middle;
     color: var(--text-secondary);
     font-size: 14px;
+    position: relative;
   }
   .pkg-table tbody td:first-child {
     font-family: var(--font-body);
     font-weight: 500;
     color: var(--text);
     font-size: 15px;
+  }
+  .pkg-help {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted rgba(79, 179, 154, 0.65);
+    color: var(--text);
+    cursor: help;
+    line-height: 1.2;
+  }
+  .pkg-help:hover,
+  .pkg-help:focus-visible {
+    z-index: 10000;
+  }
+  .pkg-help:focus-visible {
+    outline: 1px solid var(--mint);
+    outline-offset: 2px;
+    border-bottom-color: transparent;
+  }
+  .pkg-help::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 8px);
+    width: min(320px, 75vw);
+    background: #101623;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    letter-spacing: 0;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(2px);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+    pointer-events: none;
+  }
+  .pkg-help:hover::after,
+  .pkg-help:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
   .pkg-check {
     color: var(--mint);
@@ -3811,7 +3861,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>Digital Menu (inkl. Advanced Menu, MultiView, Crowd.Order, Crowd.Pay)</td>
+          <td>Digital Menu <span class="pkg-help" tabindex="0" aria-label="Details zu Advanced Menu, MultiView, Crowd.Order und Crowd.Pay" data-tooltip="Enthaelt Advanced Menu, MultiView, Crowd.Order und Crowd.Pay. Zeitfenster fuer Menues, mehrere Ansichten (Scroll, Grid, PDF), Bestellung direkt vom Tisch und digitale Bezahlfunktion am Tisch.">Details</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-check">●</span></td>
@@ -3819,7 +3869,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>Call Waiter (inkl. Advanced Crowd.Call)</td>
+          <td>Call Waiter <span class="pkg-help" tabindex="0" aria-label="Details zu Advanced Crowd.Call" data-tooltip="Enthaelt Advanced Crowd.Call. Service-Calls nach Zweck priorisieren, z. B. Zahlen, Nachbestellen oder Hilfe.">Details</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-check">●</span></td>
@@ -3827,7 +3877,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>Bar Map (inkl. Advanced LocationView)</td>
+          <td>Bar Map <span class="pkg-help" tabindex="0" aria-label="Details zu Advanced LocationView" data-tooltip="Enthaelt Advanced LocationView. Zonen, Etagen, Service-Zustaendigkeiten und mehrere QR-Codes pro Tisch.">Details</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-check">●</span></td>
@@ -3859,7 +3909,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>Event Mode (inkl. Crowd.Reserve)</td>
+          <td>Event Mode <span class="pkg-help" tabindex="0" aria-label="Details zu Crowd.Reserve" data-tooltip="Enthaelt Crowd.Reserve. Reservierungen digital erfassen und mit der Tischlogik verknuepfen.">Details</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-check">●</span></td>
@@ -3867,7 +3917,7 @@
           <td><span class="pkg-empty">○</span></td>
         </tr>
         <tr>
-          <td>Loyalty &amp; Analytics (inkl. Rate Us)</td>
+          <td>Loyalty &amp; Analytics <span class="pkg-help" tabindex="0" aria-label="Details zu Rate Us" data-tooltip="Enthaelt Rate Us. Gezielte Aufforderung zu Google-Bewertungen nach positiven Interaktionen.">Details</span></td>
           <td><span class="pkg-empty">○</span></td>
           <td><span class="pkg-check">●</span></td>
           <td><span class="pkg-check">●</span></td>
@@ -4241,6 +4291,7 @@
   const modal = document.getElementById('cc-modal');
   const togA = document.getElementById('cc-tog-analytics');
   const togM = document.getElementById('cc-tog-marketing');
+  let overlaySafetyTimer = null;
 
   function load() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) { return null; }
@@ -4253,12 +4304,42 @@
   function showBanner() {
     banner.classList.add('is-visible');
     banner.setAttribute('aria-hidden', 'false');
-    overlay.classList.add('is-visible');
+
+    // Failsafe: only block page interactions when the banner is truly visible.
+    // Some live environments/extensions can hide the banner while our script still runs.
+    requestAnimationFrame(function() {
+      const computed = window.getComputedStyle(banner);
+      const bannerVisible = computed.display !== 'none' &&
+        computed.visibility !== 'hidden' &&
+        banner.getClientRects().length > 0;
+
+      if (bannerVisible) {
+        overlay.classList.add('is-visible');
+      } else {
+        overlay.classList.remove('is-visible');
+      }
+    });
+
+    if (overlaySafetyTimer) clearTimeout(overlaySafetyTimer);
+    overlaySafetyTimer = setTimeout(function() {
+      const computed = window.getComputedStyle(banner);
+      const bannerVisible = computed.display !== 'none' &&
+        computed.visibility !== 'hidden' &&
+        banner.getClientRects().length > 0;
+
+      if (!bannerVisible) {
+        overlay.classList.remove('is-visible');
+      }
+    }, 1200);
   }
   function hideBanner() {
     banner.classList.remove('is-visible');
     banner.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('is-visible');
+    if (overlaySafetyTimer) {
+      clearTimeout(overlaySafetyTimer);
+      overlaySafetyTimer = null;
+    }
   }
   function openModal(consent) {
     if (consent) {
