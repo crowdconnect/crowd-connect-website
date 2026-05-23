@@ -1,0 +1,134 @@
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.documentElement.classList.add('motion-safe');
+
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    var heroTargets = [
+      hero.querySelector('h1'),
+      hero.querySelector('.hero-sub'),
+      hero.querySelector('.hero-ctas'),
+      hero.querySelector('.hero-proof'),
+      hero.querySelector('.hero-meta')
+    ].filter(Boolean);
+
+    heroTargets.forEach(function(el, index) {
+      el.classList.add('hero-reveal');
+      el.style.setProperty('--hero-delay', String(index * 110) + 'ms');
+    });
+
+    requestAnimationFrame(function() {
+      hero.classList.add('is-hero-ready');
+    });
+  }
+
+  var revealTargets = Array.from(document.querySelectorAll('main section > .container'));
+  revealTargets.forEach(function(el, index) {
+    el.classList.add('motion-reveal');
+    el.style.setProperty('--reveal-delay', String(Math.min(index % 3, 2) * 80) + 'ms');
+  });
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.18,
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  revealTargets.forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+</script>
+
+<script>
+(function() {
+  var form = document.getElementById('pilotForm');
+  var successEl = document.getElementById('pilotSuccess');
+  var statusEl = document.getElementById('pilotFormStatus');
+  if (!form || !successEl || !statusEl) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var barEl   = form.elements['bar'];
+    var cityEl  = form.elements['city'];
+    var emailEl = form.elements['email'];
+    var noteEl  = form.elements['note'];
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    var valid = true;
+    statusEl.textContent = '';
+    statusEl.classList.remove('is-error');
+    [barEl, cityEl, emailEl].forEach(function(el) {
+      el.classList.remove('is-error');
+      el.removeAttribute('aria-invalid');
+      if (!el.value.trim()) { el.classList.add('is-error'); el.setAttribute('aria-invalid', 'true'); valid = false; }
+    });
+    if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+      emailEl.classList.add('is-error'); emailEl.setAttribute('aria-invalid', 'true'); valid = false;
+    }
+    if (!valid) {
+      statusEl.textContent = 'Bitte pruefe die markierten Felder.';
+      statusEl.classList.add('is-error');
+      return;
+    }
+
+    var bar   = barEl.value.trim();
+    var city  = cityEl.value.trim();
+    var email = emailEl.value.trim();
+    var note  = noteEl.value.trim();
+    var payload = {
+      bar: bar,
+      city: city,
+      email: email,
+      note: note,
+      topic: 'Crowd.Connect Pilotanfrage'
+    };
+
+    try {
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('is-loading');
+      }
+      statusEl.textContent = 'Anfrage wird gesendet...';
+
+      var response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        var errorData = {};
+        try {
+          errorData = await response.json();
+        } catch (_) {}
+        throw new Error(errorData.error || 'Ein Fehler ist aufgetreten.');
+      }
+
+      form.hidden = true;
+      successEl.hidden = false;
+      requestAnimationFrame(function() {
+        successEl.classList.add('is-visible');
+      });
+    } catch (err) {
+      statusEl.textContent = (err && err.message) ? err.message : 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
+      statusEl.classList.add('is-error');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-loading');
+      }
+    }
+  });
+})();
+</script>

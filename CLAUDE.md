@@ -1,6 +1,23 @@
 # crowd-connect-website
 
-Pure HTML/CSS/JS single-page marketing site for Crowd.Connect — a B2B SaaS platform for bar/venue operators in Germany.
+Next.js marketing site for Crowd.Connect — a B2B SaaS platform for bar/venue operators in Germany. Uses App Router, TypeScript, Tailwind CSS, shadcn-style `components/ui`, and framer-motion scroll hero.
+
+## Commands
+
+```bash
+npm run dev      # Next.js dev server (port 3000)
+npm run build    # Production build
+npm start        # Production server
+npm run legacy   # Old Express static server (pre-migration)
+```
+
+Legacy full single-page site: `/classic.html` (formerly `index.html`).
+
+## Structure
+
+- `app/` — Next.js routes (`page.tsx`, `api/contact/route.ts`)
+- `components/ui/` — shadcn-compatible UI primitives (e.g. `container-scroll-animation.tsx`)
+- `public/` — static assets, impressum, datenschutz, classic HTML
 
 ## Design Context
 
