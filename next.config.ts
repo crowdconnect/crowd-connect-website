@@ -17,6 +17,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      { source: "/impressum", destination: "/impressum.html" },
+      { source: "/datenschutz", destination: "/datenschutz.html" },
+      {
+        source: "/wedding-connect",
+        destination: "/wedding-connect/index.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

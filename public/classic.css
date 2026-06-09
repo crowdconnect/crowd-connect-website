@@ -1,12 +1,12 @@
   /* ============ DESIGN TOKENS ============ */
   :root {
-    /* Backgrounds — page layers */
+    /* Backgrounds : page layers */
     --bg-deep: #0A0E18;
     --bg-base: #11161F;
     --bg-elevated: #1A2030;
     --bg-card: #232A3A;
 
-    /* Backgrounds — embedded components (mockups, panels) */
+    /* Backgrounds : embedded components (mockups, panels) */
     --bg-panel: #0F1320;
     --bg-phone-deep: #1F2533;
     --bg-phone-base: #161B27;
@@ -83,7 +83,7 @@
     word-break: break-word;
   }
 
-  /* Skip to main content — screen readers + keyboard */
+  /* Skip to main content : screen readers + keyboard */
   .skip-link {
     position: absolute;
     top: -100%;
@@ -146,11 +146,17 @@
     line-height: 1;
   }
   .logo-mark {
-    height: 40px;
     width: auto;
     flex-shrink: 0;
     display: block;
     object-fit: contain;
+    object-position: left center;
+  }
+  .logo-mark--long { height: 52px; }
+  .logo-mark--short { height: 40px; display: none; }
+  @media (max-width: 860px) {
+    .logo-mark--long { display: none; }
+    .logo-mark--short { display: block; }
   }
   .nav-links {
     display: flex;
@@ -410,6 +416,145 @@
 
   @media (max-width: 720px) {
     .hero { padding: 120px 0 60px; min-height: auto; }
+  }
+
+  /* ============ PRODUCT CHOICE ============ */
+  .product-choice {
+    background: var(--bg-deep);
+    padding: 48px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .product-choice-head {
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .product-choice-head h2 {
+    font-family: var(--font-section);
+    font-size: clamp(36px, 4.8vw, 64px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .product-choice-head h2 .brand-middot {
+    font-size: 0.5em;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  .product-choice-lead {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 560px;
+  }
+  .product-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .product-choice-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px 26px 24px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    min-height: 100%;
+    transition:
+      border-color var(--motion-medium) var(--ease-out-quart),
+      box-shadow var(--motion-medium) var(--ease-out-quart);
+  }
+  .product-choice-card--crowd {
+    border-color: var(--mint-dim);
+    box-shadow: inset 0 0 0 1px rgba(79, 179, 154, 0.08);
+  }
+  .product-choice-card--wedding {
+    border-color: rgba(201, 162, 75, 0.28);
+  }
+  .product-choice-card--wedding:hover {
+    border-color: rgba(201, 162, 75, 0.48);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  }
+  .product-choice-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mint);
+    background: var(--mint-soft);
+    border: 1px solid var(--mint-dim);
+    border-radius: 100px;
+    padding: 4px 10px;
+  }
+  .product-choice-card-top {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+  }
+  .product-choice-logo {
+    width: auto;
+    height: 52px;
+    max-width: min(100%, 340px);
+    object-fit: contain;
+    object-position: left center;
+  }
+  .product-choice-audience {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .product-choice-card--wedding .product-choice-audience {
+    color: rgba(201, 162, 75, 0.85);
+  }
+  .product-choice-desc {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    flex: 1;
+  }
+  .product-choice-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    min-height: 44px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--mint-bright);
+    transition: gap var(--motion-fast) var(--ease-out-quart);
+  }
+  .product-choice-card--wedding .product-choice-link {
+    color: #D4B06A;
+  }
+  .product-choice-link:hover {
+    gap: 12px;
+  }
+  @media (max-width: 768px) {
+    .product-choice {
+      padding: 36px 0 44px;
+    }
+    .product-choice-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .product-choice-card {
+      padding: 24px 20px 20px;
+    }
+    .product-choice-logo {
+      height: 44px;
+      max-width: min(100%, 300px);
+    }
   }
 
   /* ============ DRINK-TO-TABLE ============ */

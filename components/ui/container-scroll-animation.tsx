@@ -9,7 +9,7 @@ import {
   MotionValue,
 } from "framer-motion";
 
-const TILT_DEGREES = 16;
+const TILT_DEGREES = 28;
 
 export const ContainerScroll = ({
   titleComponent,
@@ -28,7 +28,7 @@ export const ContainerScroll = ({
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: compact
-      ? ["start 0.92", "start 0.28"]
+      ? ["start end", "end 0.35"]
       : ["start end", "end start"],
   });
 
@@ -44,7 +44,7 @@ export const ContainerScroll = ({
   }, []);
 
   const startTilt = prefersReducedMotion ? 0 : TILT_DEGREES;
-  const progressRange = compact ? [0, 0.5, 1] : [0, 1];
+  const progressRange = compact ? [0, 0.85, 1] : [0, 1];
   const rotateRange = compact
     ? [startTilt, 0, 0]
     : [startTilt, 0];
@@ -70,7 +70,7 @@ export const ContainerScroll = ({
     <div
       className={
         compact
-          ? "relative flex h-[34rem] items-start justify-center p-2 pt-0 md:h-[38rem] md:p-4 md:pt-0"
+          ? "relative flex h-[40rem] items-start justify-center p-2 pt-0 md:h-[46rem] md:p-4 md:pt-0"
           : "relative flex h-[60rem] items-center justify-center p-2 md:h-[80rem] md:p-20"
       }
       ref={containerRef}

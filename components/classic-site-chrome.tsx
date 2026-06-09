@@ -4,6 +4,7 @@ import { ClassicBodyContent } from "@/components/classic-body-content";
 import { ClassicHero } from "@/components/classic-hero";
 import { ClassicNav } from "@/components/classic-nav";
 import { ClassicSiteEffects } from "@/components/classic-site-effects";
+import { ProductChoiceSection } from "@/components/product-choice-section";
 import { ProductScrollSection } from "@/components/product-scroll-section";
 
 function readFragment(name: string) {
@@ -27,6 +28,7 @@ export function ClassicSiteChrome() {
 
       <main id="main-content">
         <ClassicHero />
+        <ProductChoiceSection />
         <ProductScrollSection />
         <ClassicBodyContent html={bodyHtml} />
       </main>

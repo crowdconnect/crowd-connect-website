@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wedding.Connect · Hochzeits-Entertainment aus einer Hand</title>
+<link rel="icon" type="image/png" href="/wedding-connect.png">
+<link rel="apple-touch-icon" href="/wedding-connect.png">
+<base href="/wedding-connect/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111917; --ink-2:#0b1311; --canvas:#FBF8F2; --canvas-2:#F2EBDF;
+    --teal:#C9A24B; --teal-deep:#7A5C16; --emerald:#0C3A30;
+    --gold:#B98E4F; --champ:#D8BE8C; --blush:#EAD7CF;
+    --text:#1A2421; --muted:#5C6B64; --line:rgba(20,40,34,.12); --line-d:rgba(255,255,255,.14);
+    --serif:"Fraunces",Georgia,serif; --sans:"Space Grotesk",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--canvas);color:var(--text);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+  section{position:relative;scroll-margin-top:88px}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:-.01em}
+  p{font-size:clamp(1rem,1.05vw,1.12rem)}
+  a{color:inherit}
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;font-weight:600;color:var(--teal-deep)}
+  .eyebrow.on-dark{color:var(--teal)}
+  .lede{font-size:clamp(1.1rem,1.5vw,1.32rem);color:var(--muted);line-height:1.6}
+
+  /* ---- header ---- */
+  header{position:sticky;top:0;z-index:60;backdrop-filter:blur(12px);background:rgba(11,19,17,.82);border-bottom:1px solid var(--line-d)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+  .brand{display:inline-flex;align-items:center;line-height:0;text-decoration:none}
+  .brand-logo{width:auto;max-width:min(320px,64vw);object-fit:contain;object-position:left center;display:block}
+  .brand-logo--long{height:52px}
+  .brand-logo--short{height:40px;display:none}
+  @media(max-width:860px){.brand-logo--long{display:none}.brand-logo--short{display:block}}
+  .navlinks{display:flex;gap:26px;align-items:center}
+  .navlinks a:not(.nav-cta){display:inline-flex;align-items:center;line-height:1}
+  .navlinks a{font-family:var(--sans);font-size:.82rem;font-weight:500;color:rgba(244,241,234,.72);text-decoration:none;letter-spacing:.02em;transition:color .2s}
+  .navlinks a:hover{color:var(--teal)}
+
+  /* mobile nav */
+  .nav-mobile{display:none;align-items:center;gap:10px}
+  .nav-mobile .nav-cta{padding:10px 16px}
+  .nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);border-radius:12px;color:#F6F3EC;cursor:pointer;transition:background .2s,border-color .2s}
+  .nav-toggle:hover{border-color:var(--teal)}
+  .nav-toggle svg{width:22px;height:22px;display:block}
+  .nav-toggle .x{display:none}
+  .nav-toggle[aria-expanded="true"] .bars{display:none}
+  .nav-toggle[aria-expanded="true"] .x{display:inline-flex}
+  .mobile-menu{position:absolute;top:100%;left:0;right:0;background:rgba(11,19,17,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-d);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s ease,transform .25s ease,visibility .25s}
+  .mobile-menu.open{opacity:1;visibility:visible;transform:none}
+  .mobile-menu a{display:block;padding:15px clamp(20px,5vw,40px);min-height:48px;font-family:var(--sans);font-size:1rem;font-weight:500;color:rgba(244,241,234,.85);text-decoration:none;border-top:1px solid rgba(255,255,255,.07);transition:color .2s,background .2s}
+  .mobile-menu a:first-child{border-top:0}
+  .mobile-menu a:last-child{color:var(--teal)}
+  .mobile-menu a:hover,.mobile-menu a:focus-visible{color:var(--teal);background:rgba(255,255,255,.04)}
+  @media(max-width:860px){.navlinks{display:none}.nav-mobile{display:flex}}
+  @media(min-width:861px){.mobile-menu{display:none}}
+  @media(prefers-reduced-motion:reduce){.mobile-menu{transition:opacity .01s,visibility .01s}}
+
+  /* ---- hero ---- */
+  .hero{min-height:90vh;display:flex;align-items:flex-end;color:#F6F3EC;background-color:#0b1311;background-size:cover;background-position:center;position:relative;overflow:hidden}
+  .hero.is-video-playing{background-image:none!important}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82;z-index:0;pointer-events:none}
+  .hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 30% 50%,rgba(255,255,255,.05),transparent 60%),linear-gradient(180deg,rgba(11,19,17,.48) 0%,rgba(11,19,17,.82) 65%,#0b1311 100%),linear-gradient(90deg,rgba(11,19,17,.68) 0%,transparent 45%,rgba(11,19,17,.58) 100%)}
+  @media(prefers-reduced-motion:reduce){.hero-bg{display:none!important}}
+  .hero .wrap{position:relative;z-index:2;padding-top:90px;padding-bottom:clamp(48px,8vh,96px)}
+  .hero .kick{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(201,162,75,.4);padding:7px 14px;border-radius:100px;background:rgba(11,40,33,.4)}
+  .hero h1{font-size:clamp(2.6rem,6.6vw,5.4rem);font-weight:500;margin:26px 0 0;max-width:16ch;color:#fff}
+  .hero h1 em{font-style:italic;color:var(--teal)}
+  .hero .sub{font-size:clamp(1.1rem,1.7vw,1.4rem);max-width:46ch;margin-top:22px;color:rgba(246,243,236,.9);line-height:1.55}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .hero .meta span{font-family:var(--sans);font-size:.78rem;letter-spacing:.02em;padding:8px 15px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(4px)}
+  @media(max-width:600px){.hero .kick{font-size:.6rem;letter-spacing:.1em;padding:8px 14px;line-height:1.5;border-radius:16px;max-width:100%}}
+
+  /* ---- generic section ---- */
+  .band{padding:clamp(64px,9vw,120px) 0}
+  .band.tint{background:var(--canvas-2)}
+  .band.dark{background:var(--ink);color:#EFEDE6}
+  .band.dark .lede{color:rgba(239,237,230,.66)}
+  .band.dark h2{color:#fff}
+  .sec-head{max-width:62ch}
+  .sec-head h2{font-size:clamp(2rem,4vw,3.2rem);margin:16px 0 0}
+  .sec-head .lede{margin-top:20px}
+  .center{margin-left:auto;margin-right:auto;text-align:center}
+
+  /* ---- steps ---- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr;gap:16px}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px 26px;position:relative;overflow:hidden}
+  .step .n{font-family:var(--sans);font-weight:700;font-size:.78rem;letter-spacing:.2em;color:var(--teal-deep)}
+  .step h3{font-size:1.4rem;margin:14px 0 8px}
+  .step p{color:var(--muted);font-size:.98rem}
+  .step .ic{font-size:1.7rem;margin-bottom:6px}
+
+  /* ---- device showcase ---- */
+  .show{display:grid;grid-template-columns:300px 1fr;gap:clamp(28px,5vw,72px);align-items:center;margin-top:60px}
+  @media(max-width:880px){.show{grid-template-columns:1fr;gap:40px;justify-items:center}}
+  /* phone */
+  .phone{width:286px;height:600px;background:#0a100e;border-radius:42px;padding:12px;box-shadow:0 40px 80px -30px rgba(10,30,24,.55),0 0 0 1px rgba(0,0,0,.3);position:relative;flex:none}
+  .phone .scr{width:100%;height:100%;background:linear-gradient(180deg,rgba(10,28,24,.46) 0%,rgba(9,22,19,.54) 50%,rgba(7,16,14,.78) 100%),url('assets/10a63952-9b94-4182-b17e-0077ffbb3233.png') center top/cover;border-radius:31px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+  .phone .notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:110px;height:26px;background:#0a100e;border-radius:0 0 16px 16px;z-index:3}
+  .ph-top{display:flex;align-items:center;justify-content:space-between;padding:20px 18px 10px}
+  .ph-wm{font-family:var(--sans);font-size:.5rem;letter-spacing:.2em;color:rgba(255,255,255,.6);text-transform:uppercase}
+  .ph-score{font-family:var(--sans);font-size:.62rem;font-weight:600;color:#0b1f1b;background:var(--teal);padding:4px 9px;border-radius:100px}
+  .ph-couple{font-family:var(--serif);font-size:1.5rem;color:#fff;text-align:center;padding:6px 0 2px}
+  .ph-couple .amp{color:var(--teal);font-style:italic}
+  .ph-q{margin:auto 16px 16px;background:rgba(7,17,15,.5);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:18px 16px;display:flex;flex-direction:column;gap:10px}
+  .ph-q .qx{font-family:var(--sans);font-size:.56rem;letter-spacing:.18em;color:var(--teal);text-transform:uppercase}
+  .ph-q .qt{font-family:var(--serif);font-size:1.12rem;color:#fff;line-height:1.25;margin-bottom:4px}
+  .opt{font-size:.8rem;color:rgba(255,255,255,.82);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:10px 12px;display:flex;align-items:center;gap:9px}
+  .opt .k{font-family:var(--sans);font-size:.6rem;color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.2);border-radius:5px;width:17px;height:17px;display:flex;align-items:center;justify-content:center;flex:none}
+  .opt.sel{background:var(--teal);color:#06231c;border-color:var(--teal);font-weight:600}
+  .opt.sel .k{border-color:rgba(6,35,28,.4);color:#06231c}
+  .ph-foot{padding:0 18px 22px;display:flex;align-items:center;justify-content:space-between}
+  .ph-foot .tag{font-family:var(--sans);font-size:.58rem;letter-spacing:.04em;color:rgba(255,255,255,.55)}
+  .ph-bar{height:5px;border-radius:4px;background:rgba(255,255,255,.14);flex:1;margin-left:12px;overflow:hidden}
+  .ph-bar i{display:block;height:100%;width:40%;background:var(--teal);border-radius:4px}
+
+  /* screen / leinwand */
+  .tv{width:100%;max-width:560px}
+  .tv .panel{aspect-ratio:16/10;background:linear-gradient(150deg,rgba(12,46,39,.74),rgba(8,28,24,.82) 60%,rgba(10,36,31,.78)),url('assets/8ba9501f-edc6-44d3-8153-dbbc0fa1f8fb.png') center/cover;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;color:#fff;box-shadow:0 40px 80px -34px rgba(10,30,24,.5)}
+  .tv .stand{width:120px;height:10px;background:#0a100e;border-radius:0 0 7px 7px;margin:0 auto}
+  .tv .neck{width:18px;height:22px;background:#0a100e;margin:0 auto}
+  .tv-top{display:flex;align-items:center;justify-content:space-between}
+  .tv-title{font-family:var(--serif);font-size:clamp(1rem,2vw,1.4rem)}
+  .tv-live{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+  .tv-live .blip{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(201,162,75,.6);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,162,75,.5)}70%{box-shadow:0 0 0 9px rgba(201,162,75,0)}100%{box-shadow:0 0 0 0 rgba(201,162,75,0)}}
+  .tv-body{display:grid;grid-template-columns:1.25fr .9fr;gap:18px;margin-top:14px;flex:1}
+  @media(max-width:520px){.tv-body{grid-template-columns:1fr}}
+  .lead .lb-eye{font-family:var(--sans);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+  .lb-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+  .lb-row .rk{font-family:var(--sans);font-weight:700;font-size:.74rem;width:18px;color:var(--champ)}
+  .lb-row .nm{font-size:.74rem;color:rgba(255,255,255,.9);width:64px;flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lb-row .bar{flex:1;height:9px;background:rgba(255,255,255,.1);border-radius:5px;overflow:hidden}
+  .lb-row .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),#E6CC85);border-radius:5px}
+  .lb-row .pts{font-family:var(--sans);font-size:.66rem;color:rgba(255,255,255,.7);width:30px;text-align:right}
+  .wallgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;align-content:start}
+  .wallgrid .ph{aspect-ratio:1;border-radius:7px}
+  .wallcap{font-family:var(--sans);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:7px}
+
+  /* ---- trust ---- */
+  .trust{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:760px){.trust{grid-template-columns:1fr}}
+  .trust li{font-size:.95rem;color:var(--muted);padding-left:22px;position:relative;line-height:1.5}
+  .trust li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+
+  /* ---- highlights ---- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:40px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column}
+  .card .ci{font-size:1.5rem;margin-bottom:10px}
+  .card h4{font-family:var(--serif);font-size:1.12rem;font-weight:600;margin-bottom:6px;line-height:1.2}
+  .card p{font-size:.88rem;color:var(--muted);line-height:1.5;flex:1}
+  .card .when{font-family:var(--sans);font-size:.68rem;color:var(--teal-deep);letter-spacing:.06em;text-transform:uppercase;margin-top:12px}
+
+  /* ---- screen layer (dark) features ---- */
+  .scrgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:46px}
+  .scrgrid .si{border:1px solid var(--line-d);border-radius:14px;padding:20px 18px;background:rgba(255,255,255,.03)}
+  .scrgrid .si .ic{font-size:1.4rem;margin-bottom:10px}
+  .scrgrid .si h4{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:#fff;margin-bottom:5px}
+  .scrgrid .si p{font-size:.85rem;color:rgba(239,237,230,.6)}
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:100px;font-family:var(--sans);font-weight:600;font-size:.88rem;text-decoration:none;cursor:pointer;border:none;transition:background .2s,transform .2s,color .2s,border-color .2s}
+  .btn-primary{background:var(--teal);color:#06231c}
+  .btn-primary:hover{background:#E6CC85;transform:translateY(-2px)}
+  .btn-secondary{background:transparent;color:#F6F3EC;border:1.5px solid rgba(255,255,255,.35)}
+  .btn-secondary:hover{border-color:var(--teal);color:var(--teal)}
+  .btn-lg{padding:15px 28px;font-size:.94rem}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .nav-cta{padding:9px 18px;font-size:.78rem;background:var(--teal);color:#06231c;border-radius:100px;text-decoration:none;font-family:var(--sans);font-weight:600;letter-spacing:.02em;transition:background .2s,transform .2s;flex:none}
+  .nav-cta:hover{background:#E6CC85;transform:translateY(-1px)}
+
+  /* ---- CTA / contact ---- */
+  .cta{background:var(--ink);color:#F2EFE8}
+  .cta-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:start}
+  @media(max-width:820px){.cta-grid{grid-template-columns:1fr;gap:28px}}
+  .cta-facts{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:28px}
+  .cta-facts li{display:flex;flex-direction:column;gap:4px;padding-bottom:18px;border-bottom:1px solid var(--line-d)}
+  .cta-facts li:last-child{border-bottom:0;padding-bottom:0}
+  .cta-facts .fv{font-family:var(--serif);font-size:1.6rem;color:var(--teal)}
+  .cta-facts .fl{font-size:.9rem;color:rgba(242,239,232,.7)}
+  .wc-form{background:rgba(255,255,255,.04);border:1px solid var(--line-d);border-radius:18px;padding:28px 26px}
+  .wc-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.wc-form-row{grid-template-columns:1fr}}
+  .wc-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .wc-field label{font-family:var(--sans);font-size:.7rem;font-weight:600;color:rgba(242,239,232,.8);letter-spacing:.1em;text-transform:uppercase}
+  .wc-optional{font-weight:400;text-transform:none;letter-spacing:0;opacity:.7}
+  .wc-field input,.wc-field textarea{background:rgba(255,255,255,.06);border:1px solid var(--line-d);border-radius:10px;color:#F2EFE8;font-family:var(--body);font-size:.95rem;padding:11px 14px;width:100%;transition:border-color .15s;resize:none}
+  .wc-field input::placeholder,.wc-field textarea::placeholder{color:rgba(242,239,232,.35)}
+  .wc-field input:focus,.wc-field textarea:focus{outline:none;border-color:var(--teal)}
+  .wc-field input.is-error,.wc-field textarea.is-error{border-color:#c97a6a}
+  .wc-error{font-size:.78rem;color:#e8a89a;display:none}
+  .wc-field:has(.is-error) .wc-error{display:block}
+  .wc-footer{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:4px}
+  .wc-note{font-size:.78rem;color:rgba(242,239,232,.62)}
+  .wc-status{font-size:.82rem;color:rgba(242,239,232,.6);margin-top:10px}
+  .wc-status.is-error{color:#e8a89a}
+  .wc-form button[disabled]{opacity:.65;pointer-events:none}
+  .wc-success{padding:8px 0}
+  .wc-success-check{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(201,162,75,.15);color:var(--teal);margin-bottom:14px}
+  .wc-success-title{font-family:var(--serif);font-size:1.5rem;color:#fff;margin-bottom:8px}
+  .wc-success-body{font-size:.9rem;color:rgba(242,239,232,.7);line-height:1.6}
+  .wc-success-body a{color:var(--teal)}
+
+  /* ---- footer ---- */
+  footer.ft{background:var(--ink-2);color:rgba(239,237,230,.6);padding:46px 0;border-top:1px solid var(--line-d)}
+  .ft-in{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .ft .wm{font-family:var(--sans);font-weight:700;letter-spacing:.22em;font-size:.82rem;color:var(--teal);text-transform:uppercase}
+  .ft .wm .dot{color:var(--teal)}
+  .ft small{font-size:.76rem;line-height:1.6}
+  .ft-links{display:flex;flex-wrap:wrap;gap:14px 20px;margin-top:14px}
+  .ft-links a{font-family:var(--sans);font-size:.76rem;color:rgba(239,237,230,.55);text-decoration:none;letter-spacing:.02em;transition:color .2s}
+  .ft-links a:hover{color:var(--teal)}
+
+  .ci svg,.ic svg{display:block;color:var(--teal);stroke-width:1.5}
+  .card .ci svg{width:30px;height:30px}
+  .step .ic svg{width:34px;height:34px}
+  .si .ic svg{width:28px;height:28px}
+  .ph-score svg{display:inline-block;width:11px;height:11px;stroke-width:2.2;vertical-align:-2px;margin-right:3px}
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---- delight ---- */
+  .card,.step{transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s cubic-bezier(.2,.7,.2,1),border-color .4s}
+  .card:hover,.step:hover{transform:translateY(-4px);box-shadow:0 20px 44px -26px rgba(122,92,22,.5);border-color:rgba(201,162,75,.5)}
+  .card .ci,.step .ic,.si .ic{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .card:hover .ci,.step:hover .ic,.si:hover .ic{transform:scale(1.12) rotate(-5deg)}
+  .si{transition:transform .4s cubic-bezier(.2,.7,.2,1),background .4s,border-color .4s}
+  .si:hover{transform:translateY(-4px);background:rgba(201,162,75,.08);border-color:rgba(201,162,75,.4)}
+
+  /* discoverable konfetti moment */
+  .celebrate{cursor:pointer}
+  .celebrate:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+  .card.celebrate .hint{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-family:var(--sans);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep);opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s}
+  .card.celebrate:hover .hint,.card.celebrate:focus-visible .hint{opacity:.9;transform:none}
+  .card.celebrate:hover .ci,.si.celebrate:hover .ic{animation:tada .9s ease}
+  @keyframes tada{0%{transform:scale(1)}20%{transform:scale(1.18) rotate(-9deg)}45%{transform:scale(1.12) rotate(8deg)}70%{transform:scale(1.12) rotate(-5deg)}100%{transform:scale(1) rotate(0)}}
+
+  /* tactile press */
+  .btn:active{transform:translateY(1px) scale(.99)}
+  .btn-primary:hover{box-shadow:0 12px 26px -14px rgba(201,162,75,.85)}
+  .nav-cta:active{transform:translateY(1px)}
+  .opt{transition:background .2s,border-color .2s,transform .2s}
+
+  /* form focus warmth */
+  .wc-field input,.wc-field textarea{transition:border-color .18s,box-shadow .22s,background .22s}
+  .wc-field input:focus,.wc-field textarea:focus{box-shadow:0 0 0 3px rgba(201,162,75,.2)}
+  .wc-field:focus-within label{color:var(--teal)}
+
+  /* live bars (phone + leinwand) fill on scroll-in */
+  .lb-row .bar i,.ph-bar i{transform-origin:left}
+  .tv-animate .lb-row .bar i,.tv-animate .ph-bar i{transform:scaleX(0);transition:transform 1.15s cubic-bezier(.2,.7,.2,1)}
+  .tv-animate.go .lb-row .bar i,.tv-animate.go .ph-bar i{transform:scaleX(1)}
+  .tv-animate.go .lb-row:nth-of-type(1) .bar i{transition-delay:.05s}
+  .tv-animate.go .lb-row:nth-of-type(2) .bar i{transition-delay:.14s}
+  .tv-animate.go .lb-row:nth-of-type(3) .bar i{transition-delay:.23s}
+  .tv-animate.go .lb-row:nth-of-type(4) .bar i{transition-delay:.32s}
+
+  /* success celebration */
+  .confetti-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999}
+  .wc-success-check{animation:pop .5s cubic-bezier(.2,.9,.3,1.2)}
+  @keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+
+  /* ---- featured flagship game ---- */
+  .featured{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,48px);align-items:center;margin-top:clamp(40px,5vw,56px);background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(26px,4vw,42px);box-shadow:0 34px 64px -42px rgba(122,92,22,.5)}
+  @media(max-width:680px){.featured{grid-template-columns:1fr;gap:18px}}
+  .featured-aside{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+  .featured-tag{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;font-weight:600;color:var(--teal-deep)}
+  .featured-ic{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,rgba(201,162,75,.24),rgba(201,162,75,.07));color:var(--teal)}
+  .featured-ic svg{width:40px;height:40px;stroke-width:1.4}
+  .featured-main h3{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:500;line-height:1.05}
+  .featured-main p{color:var(--muted);margin-top:12px;max-width:56ch}
+  .featured-when{display:inline-block;margin-top:18px;font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+
+  /* ---- phases timeline ---- */
+  .phases{margin-top:clamp(34px,5vw,56px);display:flex;flex-direction:column;gap:clamp(28px,4vw,46px)}
+  .phase{display:grid;grid-template-columns:minmax(160px,210px) 1fr;gap:clamp(20px,4vw,52px);align-items:start;padding-top:30px;border-top:1px solid var(--line)}
+  @media(max-width:680px){.phase{grid-template-columns:1fr;gap:18px;padding-top:24px}}
+  .phase-label{display:flex;flex-direction:column;gap:5px;position:sticky;top:104px}
+  @media(max-width:680px){.phase-label{position:static}}
+  .phase-time{font-family:var(--serif);font-size:1.4rem;line-height:1.1;color:var(--text)}
+  .phase-note{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-deep)}
+  .phase-list{display:flex;flex-direction:column;gap:24px}
+  .game{display:flex;gap:16px;align-items:flex-start}
+  .game-ic{flex:none;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:rgba(201,162,75,.1);color:var(--teal);transition:transform .35s cubic-bezier(.2,.7,.2,1),background .35s}
+  .game-ic svg{width:22px;height:22px;stroke-width:1.5}
+  .game:hover .game-ic{transform:translateY(-2px) scale(1.06);background:rgba(201,162,75,.2)}
+  .game h4{font-family:var(--serif);font-size:1.2rem;font-weight:600;line-height:1.2;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .game p{color:var(--muted);font-size:.95rem;margin-top:5px;max-width:50ch}
+  .game.celebrate .hint{font-family:var(--sans);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-deep);display:inline-flex;align-items:center;gap:4px;opacity:0;transform:translateY(2px);transition:opacity .3s,transform .3s}
+  .game.celebrate:hover .hint,.game.celebrate:focus-visible .hint{opacity:.85;transform:none}
+  .game.celebrate:hover .game-ic{animation:tada .9s ease}
+  .game .hint svg{width:11px;height:11px}
+
+  /* ---- leinwand asymmetric ---- */
+  .leinwand-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,84px);align-items:start}
+  @media(max-width:820px){.leinwand-grid{grid-template-columns:1fr;gap:34px}}
+  .leinwand-grid .sec-head{max-width:none}
+  .screen-list{list-style:none;display:flex;flex-direction:column;margin-top:6px}
+  .screen-list li{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-top:1px solid var(--line-d)}
+  .screen-list li:first-child{border-top:0;padding-top:0}
+  .sl-ic{flex:none;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:rgba(201,162,75,.12);color:var(--teal)}
+  .sl-ic svg{width:22px;height:22px;stroke-width:1.5}
+  .screen-list h3{font-family:var(--serif);font-size:1.18rem;font-weight:500;color:#fff;line-height:1.2}
+  .screen-list p{font-size:.9rem;color:rgba(239,237,230,.62);margin-top:4px}
+
+  /* keyboard focus visibility */
+  a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+
+  @media(prefers-reduced-motion:reduce){
+    .reveal{transition:none;opacity:1;transform:none}
+    .card:hover,.step:hover,.si:hover{transform:none}
+    .card.celebrate:hover .ci,.si.celebrate:hover .ic{animation:none}
+    .game:hover .game-ic{transform:none}
+    .game.celebrate:hover .game-ic{animation:none}
+    .wc-success-check{animation:none}
+    .tv-live .blip{animation:none}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="/" class="brand" aria-label="Zurück zu Crowd·Connect">
+      <img
+        src="/wedding-connect-logo-text-long-white-big.png"
+        alt="Wedding·Connect"
+        class="brand-logo brand-logo--long"
+        width="320"
+        height="57"
+      />
+      <img
+        src="/wedding-connect-logo-text-short-white.png"
+        alt="Wedding·Connect"
+        class="brand-logo brand-logo--short"
+        width="120"
+        height="40"
+      />
+    </a>
+    <nav class="navlinks">
+      <a href="#prinzip">So geht's</a>
+      <a href="#spiele">Spiele</a>
+      <a href="#leinwand">Leinwand</a>
+      <a href="#kontakt" class="nav-cta">Anfragen →</a>
+    </nav>
+    <div class="nav-mobile">
+      <a href="#kontakt" class="nav-cta">Anfragen</a>
+      <button class="nav-toggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="bars"><i data-lucide="menu"></i></span>
+        <span class="x"><i data-lucide="x"></i></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#prinzip">So geht's</a>
+    <a href="#spiele">Spiele</a>
+    <a href="#leinwand">Leinwand</a>
+    <a href="#kontakt">Für unsere Hochzeit anfragen</a>
+  </div>
+</header>
+
+<section class="hero" style="background-image:url('/wedding-connect/assets/ed6cceab-b385-4b37-8396-c5212886fcbd.png')">
+  <video
+    class="hero-bg"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    poster="/wedding-connect/assets/ed6cceab-b385-4b37-8396-c5212886fcbd.png"
+    aria-hidden="true"
+  >
+    <source src="/wedding-connect/assets/aac2a733-7129-4c5f-83cc-815e6fc43db7.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="kick">Hochzeits-Edition von Crowd·Connect</span>
+    <h1>Die Hochzeit, bei der <em>alle</em> mitspielen.</h1>
+    <p class="sub">QR-Code am Tisch, Spiele auf dem Handy, große Momente auf der Leinwand. Wedding.Connect verwandelt jede Feier in ein gemeinsames Erlebnis, und macht aus Leerlauf den Lieblingsmoment des Abends.</p>
+    <div class="hero-ctas">
+      <a href="#kontakt" class="btn btn-primary btn-lg">Für unsere Hochzeit anfragen →</a>
+      <a href="#prinzip" class="btn btn-secondary btn-lg">So funktioniert's</a>
+    </div>
+    <div class="meta">
+      <span>Kein App-Download</span>
+      <span>Custom-Trivia übers Brautpaar</span>
+      <span>Foto-Wall &amp; Leaderboard live</span>
+      <span>DSGVO · Server in DE</span>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="prinzip">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">So geht's</span>
+      <h2>Scannt. Spielt. Erlebt es groß.</h2>
+      <p class="lede">QR-Code auf der Tischkarte, Spiel im Browser, kein App-Download, kein Login. Eure Gäste spielen am Handy, die großen Momente laufen auf eurem Beamer oder TV. <strong>Ein System für den ganzen Tag.</strong></p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="ic"><i data-lucide="qr-code"></i></div>
+        <span class="n">01 · Scannen</span>
+        <h3>QR am Tisch</h3>
+        <p>Gast scannt den Code auf der Tischkarte. Sofort im Browser drin, ohne Download, ohne Konto, eindeutig dem Tisch zugeordnet.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ic"><i data-lucide="gamepad-2"></i></div>
+        <span class="n">02 · Mitspielen</span>
+        <h3>Spielen &amp; abstimmen</h3>
+        <p>Trivia über das Brautpaar, Foto-Aufgaben, Voraussagen, Musikwünsche. Jeder am eigenen Gerät, im eigenen Tempo, oder gemeinsam als Tisch-Team.</p>
+      </div>
+      <div class="step reveal">
+        <div class="ic"><i data-lucide="tv"></i></div>
+        <span class="n">03 · Erleben</span>
+        <h3>Auf der Leinwand</h3>
+        <p>Punktestände, Fotos und Auflösungen erscheinen live auf dem großen Screen. Aus einzelnen Handys wird ein gemeinsamer Moment im Raum.</p>
+      </div>
+    </div>
+
+    <div class="show">
+      <div class="phone reveal" aria-label="Mockup: Couple-Trivia auf dem Smartphone">
+        <div class="notch"></div>
+        <div class="scr">
+          <div class="ph-top"><span class="ph-wm">Wedding · Connect</span><span class="ph-score"><i data-lucide="trophy"></i> 7 / 10</span></div>
+          <div class="ph-couple">Lena <span class="amp">&amp;</span> Jonas</div>
+          <div class="ph-q">
+            <span class="qx">Frage 4 von 10</span>
+            <span class="qt">Wo hatten Lena &amp; Jonas ihr erstes Date?</span>
+            <div class="opt"><span class="k">A</span> Auf einem Festival</div>
+            <div class="opt sel"><span class="k">B</span> Im kleinen Café Mori</div>
+            <div class="opt"><span class="k">C</span> Beim Wandern am See</div>
+            <div class="opt"><span class="k">D</span> In der Stadtbibliothek</div>
+          </div>
+          <div class="ph-foot"><span class="tag">Tisch 6 · Platz 3</span><span class="ph-bar"><i></i></span></div>
+        </div>
+      </div>
+
+      <div class="reveal" style="width:100%">
+        <div class="tv">
+          <div class="panel" aria-label="Mockup: Live-Leaderboard auf der Leinwand">
+            <div class="tv-top">
+              <span class="tv-title">Wie gut kennt ihr uns?</span>
+              <span class="tv-live"><span class="blip"></span>Live</span>
+            </div>
+            <div class="tv-body">
+              <div class="lead">
+                <div class="lb-eye">Bestenliste</div>
+                <div class="lb-row"><span class="rk">1</span><span class="nm">Tisch 3</span><span class="bar"><i style="width:94%"></i></span><span class="pts">940</span></div>
+                <div class="lb-row"><span class="rk">2</span><span class="nm">Onkel Theo</span><span class="bar"><i style="width:82%"></i></span><span class="pts">820</span></div>
+                <div class="lb-row"><span class="rk">3</span><span class="nm">Tisch 6</span><span class="bar"><i style="width:74%"></i></span><span class="pts">740</span></div>
+                <div class="lb-row"><span class="rk">4</span><span class="nm">Mia &amp; Ben</span><span class="bar"><i style="width:61%"></i></span><span class="pts">610</span></div>
+              </div>
+              <div>
+                <div class="wallcap">Live von euren Gästen</div>
+                <div class="wallgrid">
+                  <div class="ph" style="background:linear-gradient(135deg,#3a6b5e,#274b41)"></div>
+                  <div class="ph" style="background:linear-gradient(135deg,#c8a36b,#9c7b45)"></div>
+                  <div class="ph" style="background:linear-gradient(135deg,#5e8f80,#3a6b5e)"></div>
+                  <div class="ph" style="background:linear-gradient(135deg,#d8be8c,#b9925a)"></div>
+                  <div class="ph" style="background:linear-gradient(135deg,#2f5a4e,#1c3a32)"></div>
+                  <div class="ph" style="background:linear-gradient(135deg,#e0d0c4,#c2a48f)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="neck"></div><div class="stand"></div>
+        </div>
+        <p style="font-size:.82rem;color:var(--muted);margin-top:18px;font-family:var(--sans);letter-spacing:.02em">Mockup: Handy &amp; Leinwand laufen in Echtzeit zusammen. Designs werden auf das Paar gebrandet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band tint" id="spiele">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Eure Lieblingsspiele</span>
+      <h2>Acht Spiele, ein roter Faden durch den Tag.</h2>
+      <p class="lede">Vom Empfang bis zur Tanzfläche, digital, stressfrei und auf euch zugeschnitten. Weitere Spielarten gibt es auf Anfrage.</p>
+    </div>
+
+    <article class="featured reveal">
+      <div class="featured-aside">
+        <span class="featured-tag">Das Herzstück</span>
+        <div class="featured-ic"><i data-lucide="heart"></i></div>
+      </div>
+      <div class="featured-main">
+        <h3>Couple-Trivia</h3>
+        <p>„Wie gut kennt ihr das Brautpaar?“ Eure Geschichten werden zum Quiz, jeder Tisch rät mit, die Live-Rangliste läuft auf der Leinwand. Genau das Spiel aus dem Mockup oben.</p>
+        <span class="featured-when">Empfang &amp; Dinner · euer Auftakt</span>
+      </div>
+    </article>
+
+    <div class="phases">
+      <div class="phase reveal">
+        <div class="phase-label">
+          <span class="phase-time">Empfang &amp; Dinner</span>
+          <span class="phase-note">Ankommen &amp; kennenlernen</span>
+        </div>
+        <div class="phase-list">
+          <div class="game">
+            <span class="game-ic"><i data-lucide="users-round"></i></span>
+            <div>
+              <h4>Mr &amp; Mrs</h4>
+              <p>Gäste raten eure Antworten, ihr löst live auf. Der Klassiker, ohne Zettel und Chaos.</p>
+            </div>
+          </div>
+          <div class="game">
+            <span class="game-ic"><i data-lucide="layout-grid"></i></span>
+            <div>
+              <h4>Foto-Bingo</h4>
+              <p>Neun Fotoaufgaben für eure Gäste, jeder wird zum Fotografen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="phase-label">
+          <span class="phase-time">Programm &amp; Abend</span>
+          <span class="phase-note">Die großen Momente</span>
+        </div>
+        <div class="phase-list">
+          <div class="game">
+            <span class="game-ic"><i data-lucide="footprints"></i></span>
+            <div>
+              <h4>Digitales Schuhspiel</h4>
+              <p>Gäste tippen live mit, die Auflösung wird zur Show auf der Leinwand.</p>
+            </div>
+          </div>
+          <div class="game">
+            <span class="game-ic"><i data-lucide="book-open"></i></span>
+            <div>
+              <h4>Digitales Gästebuch</h4>
+              <p>Foto-, Video- und Audio-Grüße statt leerer Buchseiten, für immer da.</p>
+            </div>
+          </div>
+          <div class="game celebrate" role="button" tabindex="0" aria-label="Superfan-Kürung: Konfetti-Moment auslösen">
+            <span class="game-ic"><i data-lucide="crown"></i></span>
+            <div>
+              <h4>Superfan-Kürung <span class="hint"><i data-lucide="sparkles"></i> Tippen</span></h4>
+              <p>Wer kennt euch am besten? Die große Ehrung mit Konfetti-Moment auf der Leinwand.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase reveal">
+        <div class="phase-label">
+          <span class="phase-time">Party</span>
+          <span class="phase-note">Auf die Tanzfläche</span>
+        </div>
+        <div class="phase-list">
+          <div class="game">
+            <span class="game-ic"><i data-lucide="list-music"></i></span>
+            <div>
+              <h4>Song-Wünsche</h4>
+              <p>Gäste schlagen Lieder vor und stimmen ab. Die Tanzfläche füllt sich von selbst.</p>
+            </div>
+          </div>
+          <div class="game">
+            <span class="game-ic"><i data-lucide="images"></i></span>
+            <div>
+              <h4>Live-Fotowand</h4>
+              <p>Gästefotos erscheinen in Echtzeit auf dem großen Screen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band dark" id="leinwand" style="background-image:linear-gradient(rgba(11,19,17,.82),rgba(11,19,17,.92)),url('assets/4f420424-4ca4-4ac2-bbbc-d9e3d65621bf.png');background-size:cover;background-position:center">
+  <div class="wrap leinwand-grid">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">Die Leinwand</span>
+      <h2>Alles, was am Tisch passiert, seht ihr groß.</h2>
+      <p class="lede">Während eure Gäste am Handy spielen, läuft im Raum eine einzige, gebrandete Show. Euer Beamer oder TV wird zur Bühne, in Echtzeit und mit euren Namen und Farben.</p>
+    </div>
+    <ul class="screen-list reveal">
+      <li>
+        <span class="sl-ic"><i data-lucide="activity"></i></span>
+        <div><h3>Echtzeit</h3><p>Jede Antwort, jedes Foto erscheint im selben Moment auf der Leinwand.</p></div>
+      </li>
+      <li>
+        <span class="sl-ic"><i data-lucide="trophy"></i></span>
+        <div><h3>Live-Leaderboard</h3><p>Die Bestenliste, die den ganzen Saal anfeuert.</p></div>
+      </li>
+      <li>
+        <span class="sl-ic"><i data-lucide="images"></i></span>
+        <div><h3>Foto-Slideshow</h3><p>Gästefotos groß, das visuelle Herz des Abends.</p></div>
+      </li>
+      <li>
+        <span class="sl-ic"><i data-lucide="palette"></i></span>
+        <div><h3>Euer Design</h3><p>Farben, Namen, Monogramm, sieht aus wie eure Hochzeit.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="vertrauen">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Warum Wedding.Connect</span>
+      <h2>Alles in einem, ohne App-Chaos.</h2>
+      <p class="lede">Statt fünf Einzel-Apps für Quiz, Fotos und Musik: ein System, das den ganzen Tag mitläuft.</p>
+    </div>
+    <ul class="trust reveal">
+      <li>Kein App-Download, Gäste scannen den QR-Code und spielen im Browser.</li>
+      <li>DSGVO-konform mit Servern in Deutschland, auch für eure Gästefotos.</li>
+      <li>Quiz, Fotowand und Musik-Voting in einem, voll auf euch gebrandet.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band cta" id="kontakt">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <span class="eyebrow on-dark">Kontakt</span>
+      <h2 style="font-size:clamp(1.9rem,3.6vw,2.8rem);margin-top:14px">Plant eure Hochzeit mit uns.</h2>
+      <p style="font-size:1rem;color:rgba(242,239,232,.75);margin-top:16px;max-width:48ch;line-height:1.6">Schreibt uns kurz Datum, Ort und Gästeanzahl, wir melden uns mit einem passenden Paket und dem Setup für euren Tag.</p>
+      <ul class="cta-facts">
+        <li><span class="fv">24 Std.</span><span class="fl">Antwortzeit auf jede Anfrage</span></li>
+        <li><span class="fv">1 Woche</span><span class="fl">bis zum ersten Setup-Termin</span></li>
+        <li><span class="fv">DE-Server</span><span class="fl">DSGVO-konform, auch für Gästefotos</span></li>
+      </ul>
+    </div>
+    <div class="wc-form reveal">
+      <form id="wcForm" novalidate>
+        <div class="wc-form-row">
+          <div class="wc-field">
+            <label for="wc-name">Eure Namen *</label>
+            <input type="text" id="wc-name" name="name" placeholder="z.B. Lena &amp; Jonas" required autocomplete="name" aria-describedby="wc-name-err">
+            <span class="wc-error" id="wc-name-err" role="alert">Bitte tragt eure Namen ein.</span>
+          </div>
+          <div class="wc-field">
+            <label for="wc-city">Hochzeitsort *</label>
+            <input type="text" id="wc-city" name="city" placeholder="z.B. München" required autocomplete="address-level2" aria-describedby="wc-city-err">
+            <span class="wc-error" id="wc-city-err" role="alert">Bitte tragt euren Hochzeitsort ein.</span>
+          </div>
+        </div>
+        <div class="wc-field">
+          <label for="wc-email">E-Mail *</label>
+          <input type="email" id="wc-email" name="email" placeholder="lena@beispiel.de" required autocomplete="email" aria-describedby="wc-email-err">
+            <span class="wc-error" id="wc-email-err" role="alert">Bitte gebt eine gültige E-Mail-Adresse ein.</span>
+        </div>
+        <div class="wc-field">
+          <label for="wc-note">Nachricht <span class="wc-optional">(optional)</span></label>
+          <textarea id="wc-note" name="note" rows="4" placeholder="Hochzeitsdatum, Gästeanzahl, gewünschtes Paket, alles, was wir wissen sollten."></textarea>
+        </div>
+        <div class="wc-footer">
+          <button type="submit" class="btn btn-primary btn-lg">Anfrage senden →</button>
+          <p class="wc-note">hello@crowd-connect.de · <a href="/datenschutz" style="color:inherit">Datenschutz</a></p>
+        </div>
+        <p class="wc-status" id="wcFormStatus" aria-live="polite"></p>
+      </form>
+      <div class="wc-success" id="wcSuccess" aria-live="polite" hidden>
+        <div class="wc-success-check" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p class="wc-success-title">Wir freuen uns auf eure Hochzeit!</p>
+        <p class="wc-success-body">Eure Anfrage ist angekommen, wir melden uns innerhalb von 24 Stunden, meist schon früher.<br>Lieber direkt? Schreibt uns an <a href="mailto:hello@crowd-connect.de">hello@crowd-connect.de</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MORE -->
+
+<footer class="ft">
+  <div class="wrap ft-in">
+    <div>
+      <span class="wm">Wedding<span class="dot">·</span>Connect</span>
+      <small style="display:block;margin-top:8px">Ableger von Crowd·Connect für Hochzeiten &amp; private Feiern.</small>
+      <nav class="ft-links" aria-label="Footer-Navigation">
+        <a href="#kontakt">Anfragen</a>
+        <a href="/">Crowd·Connect für Bars &amp; Venues</a>
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+      </nav>
+    </div>
+    <small style="text-align:right"><a href="#kontakt" style="color:var(--teal);text-decoration:none">Anfragen</a> · hello@crowd-connect.de<br>Ein Service der QR Solutions GmbH</small>
+  </div>
+</footer>
+
+<script src="assets/lucide.min.js"></script>
+<script>
+  if(window.lucide){lucide.createIcons();}
+
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---- mobile menu (delegated, robust to load timing) ---- */
+  (function(){
+    function setOpen(open){
+      var menu=document.getElementById('mobileMenu');
+      var toggle=document.querySelector('.nav-toggle');
+      if(!menu||!toggle){return;}
+      menu.classList.toggle('open',open);
+      toggle.setAttribute('aria-expanded',open?'true':'false');
+      toggle.setAttribute('aria-label',open?'Menü schließen':'Menü öffnen');
+    }
+    document.addEventListener('click',function(e){
+      var tgt=e.target;
+      if(!tgt||!tgt.closest){return;}
+      if(tgt.closest('.nav-toggle')){
+        var menu=document.getElementById('mobileMenu');
+        setOpen(!(menu&&menu.classList.contains('open')));
+        return;
+      }
+      if(tgt.closest('#mobileMenu a')){setOpen(false);}
+    });
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){setOpen(false);}});
+    window.addEventListener('resize',function(){if(window.innerWidth>860){setOpen(false);}});
+  })();
+
+  /* ---- elegant gold confetti ---- */
+  var confetti=(function(){
+    var COLORS=['#C9A24B','#D8BE8C','#E6CC85','#EAD7CF','#B98E4F','#F6F3EC'];
+    function burst(x,y,amount){
+      if(reduceMotion){return;}
+      var cv=document.createElement('canvas');
+      cv.className='confetti-canvas';cv.setAttribute('aria-hidden','true');
+      document.body.appendChild(cv);
+      var ctx=cv.getContext('2d');
+      var dpr=Math.min(window.devicePixelRatio||1,2);
+      function size(){cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+      size();
+      var n=amount||120,parts=[];
+      for(var i=0;i<n;i++){
+        var ang=(Math.PI*2)*(i/n)+Math.random()*0.6;
+        var spd=4+Math.random()*8;
+        parts.push({
+          x:x,y:y,
+          vx:Math.cos(ang)*spd*(0.5+Math.random()),
+          vy:Math.sin(ang)*spd-(4+Math.random()*5),
+          g:0.16+Math.random()*0.12,
+          w:5+Math.random()*7,h:9+Math.random()*9,
+          rot:Math.random()*Math.PI,vr:(Math.random()-0.5)*0.3,
+          color:COLORS[(Math.random()*COLORS.length)|0],
+          life:0,ttl:90+Math.random()*50,round:Math.random()<0.25
+        });
+      }
+      var start=null;
+      function frame(t){
+        if(start===null){start=t;}
+        ctx.clearRect(0,0,cv.width,cv.height);
+        var alive=false;
+        for(var i=0;i<parts.length;i++){
+          var p=parts[i];if(p.life>p.ttl){continue;}
+          alive=true;p.life++;
+          p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.vx*=0.99;p.rot+=p.vr;
+          var a=Math.max(0,1-p.life/p.ttl);
+          ctx.save();ctx.globalAlpha=a;ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.color;
+          if(p.round){ctx.beginPath();ctx.arc(0,0,p.w/2,0,Math.PI*2);ctx.fill();}
+          else{ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);}
+          ctx.restore();
+        }
+        if(alive){requestAnimationFrame(frame);}else{cv.remove();}
+      }
+      requestAnimationFrame(frame);
+    }
+    function fromElement(el,amount){
+      var r=el.getBoundingClientRect();
+      burst(r.left+r.width/2,r.top+r.height/2,amount);
+    }
+    return {burst:burst,fromElement:fromElement};
+  })();
+
+  /* ---- konfetti moment: discoverable celebration ---- */
+  document.querySelectorAll('.celebrate').forEach(function(el){
+    function go(){confetti.fromElement(el,110);}
+    el.addEventListener('click',go);
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}
+    });
+  });
+
+  /* ---- live bars fill when the showcase scrolls into view ---- */
+  (function(){
+    var show=document.querySelector('.show');
+    if(!show||reduceMotion){return;}
+    show.classList.add('tv-animate');
+    var barObs=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){
+        requestAnimationFrame(function(){show.classList.add('go');});
+        barObs.unobserve(e.target);
+      }});
+    },{threshold:.35});
+    barObs.observe(show);
+  })();
+
+  /* ---- a warm note for the curious ---- */
+  try{
+    console.log('%cWedding·Connect','color:#C9A24B;font:600 22px Georgia,serif');
+    console.log('%cMit Liebe gebaut für euren schönsten Tag. · hello@crowd-connect.de','color:#7A5C16;font-size:12px');
+  }catch(_){}
+
+  (function(){
+    var hv=document.querySelector('.hero-bg');
+    var hero=hv&&hv.closest('.hero');
+    if(!hv||!hero){return;}
+    hv.muted=true;
+    function markPlaying(){
+      hero.classList.add('is-video-playing');
+    }
+    function tryPlay(){
+      var p=hv.play&&hv.play();
+      if(p&&p.then){p.then(markPlaying).catch(function(){});}
+      else if(!hv.paused){markPlaying();}
+    }
+    hv.addEventListener('playing',markPlaying);
+    hv.addEventListener('loadeddata',tryPlay);
+    hv.addEventListener('canplay',tryPlay);
+    tryPlay();
+    ['click','touchstart','scroll'].forEach(function(ev){
+      document.addEventListener(ev,tryPlay,{once:true});
+    });
+  })();
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  (function(){
+    var form=document.getElementById('wcForm');
+    var successEl=document.getElementById('wcSuccess');
+    var statusEl=document.getElementById('wcFormStatus');
+    if(!form||!successEl||!statusEl){return;}
+    form.addEventListener('submit',async function(e){
+      e.preventDefault();
+      var nameEl=form.elements['name'];
+      var cityEl=form.elements['city'];
+      var emailEl=form.elements['email'];
+      var noteEl=form.elements['note'];
+      var submitBtn=form.querySelector('button[type="submit"]');
+      var valid=true;
+      statusEl.textContent='';
+      statusEl.classList.remove('is-error');
+      [nameEl,cityEl,emailEl].forEach(function(el){
+        el.classList.remove('is-error');
+        el.removeAttribute('aria-invalid');
+        if(!el.value.trim()){el.classList.add('is-error');el.setAttribute('aria-invalid','true');valid=false;}
+      });
+      if(emailEl.value.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())){
+        emailEl.classList.add('is-error');emailEl.setAttribute('aria-invalid','true');valid=false;
+      }
+      if(!valid){
+        statusEl.textContent='Bitte prüfe die markierten Felder.';
+        statusEl.classList.add('is-error');
+        return;
+      }
+      var payload={
+        name:nameEl.value.trim(),
+        city:cityEl.value.trim(),
+        email:emailEl.value.trim(),
+        note:noteEl.value.trim(),
+        topic:'Wedding.Connect Anfrage'
+      };
+      try{
+        if(submitBtn){submitBtn.disabled=true;}
+        statusEl.textContent='Eure Anfrage ist unterwegs …';
+        var response=await fetch('/api/contact',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(payload)
+        });
+        if(!response.ok){
+          var errorData={};
+          try{errorData=await response.json();}catch(_){}
+          throw new Error(errorData.error||'Ein Fehler ist aufgetreten.');
+        }
+        form.hidden=true;
+        successEl.hidden=false;
+        if(window.lucide){lucide.createIcons();}
+        requestAnimationFrame(function(){
+          if(typeof confetti!=='undefined'){confetti.fromElement(successEl,160);}
+        });
+      }catch(err){
+        statusEl.textContent=(err&&err.message)?err.message:'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
+        statusEl.classList.add('is-error');
+      }finally{
+        if(submitBtn){submitBtn.disabled=false;}
+      }
+    });
+  })();
+</script>
+</body>
+</html>

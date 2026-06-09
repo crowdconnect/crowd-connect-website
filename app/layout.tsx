@@ -51,7 +51,7 @@ export default function RootLayout({
         />
         <link rel="stylesheet" href="/classic.css" />
         <style>{`
-          .hero:has(+ .product-scroll-section) {
+          .hero:has(+ .product-choice + .product-scroll-section) {
             align-items: flex-end;
             min-height: auto;
             padding-top: 140px;
@@ -65,7 +65,7 @@ export default function RootLayout({
             margin-bottom: 0.75rem;
           }
           @media (min-width: 768px) {
-            .hero:has(+ .product-scroll-section) {
+            .hero:has(+ .product-choice + .product-scroll-section) {
               padding-top: 160px;
               padding-bottom: 1.5rem;
             }
