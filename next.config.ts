@@ -19,11 +19,26 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
-      { source: "/impressum", destination: "/impressum.html" },
-      { source: "/datenschutz", destination: "/datenschutz.html" },
+      { source: "/impressum", destination: "/legal/impressum.html" },
+      { source: "/datenschutz", destination: "/legal/datenschutz.html" },
+    ];
+  },
+  async redirects() {
+    return [
       {
         source: "/wedding-connect",
-        destination: "/wedding-connect/index.html",
+        destination: "https://wedding-connect.de",
+        permanent: true,
+      },
+      {
+        source: "/classic.html",
+        destination: "/legacy/classic.html",
+        permanent: true,
+      },
+      {
+        source: "/classic.css",
+        destination: "/legacy/classic.css",
+        permanent: true,
       },
     ];
   },

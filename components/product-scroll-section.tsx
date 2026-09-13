@@ -17,7 +17,7 @@ export function ProductScrollSection() {
         }
       >
         <Image
-          src="/cc-front-page-image.png"
+          src="/media/cc-front-page-image.png"
           alt="Crowd.Connect App: Restaurant Floor Plan auf dem Tablet, Cross-Table-Chat auf dem Smartphone"
           fill
           className="object-cover object-center"

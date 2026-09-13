@@ -44,10 +44,10 @@ export function ClassicHero() {
         loop
         playsInline
         preload="auto"
-        poster="/hero-poster.jpg"
+        poster="/media/hero-poster.jpg"
         aria-hidden="true"
       >
-        <source src="/hero.mp4" type="video/mp4" />
+        <source src="/media/hero.mp4" type="video/mp4" />
       </video>
       <div className="hero-overlay" />
 

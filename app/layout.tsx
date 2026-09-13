@@ -15,15 +15,15 @@ export const metadata: Metadata = {
       "Das Betreiber-System für moderne Bars und Venues. Mehr Umsatz, mehr Stammkunden, weniger Ärger mit GEMA.",
     type: "website",
     url: "https://crowd-connect.de/",
-    images: [{ url: "/hero-poster.jpg" }],
+    images: [{ url: "/media/hero-poster.jpg" }],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/hero-poster.jpg"],
+    images: ["/media/hero-poster.jpg"],
   },
   icons: {
-    icon: "/CrowdConnect-icon.png",
-    apple: "/CrowdConnect-icon.png",
+    icon: "/branding/CrowdConnect-icon.png",
+    apple: "/branding/CrowdConnect-icon.png",
   },
 };
 
@@ -49,7 +49,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Chathura:wght@700;800&family=Oswald:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
-        <link rel="stylesheet" href="/classic.css" />
+        <link rel="stylesheet" href="/legacy/classic.css" />
         <style>{`
           .hero:has(+ .product-choice + .product-scroll-section) {
             align-items: flex-end;

@@ -31,7 +31,7 @@ export function ProductChoiceSection() {
             <span className="product-choice-badge">Aktuell</span>
             <div className="product-choice-card-top">
               <Image
-                src="/crowd-connect-logo-text-long-white-big.png"
+                src="/branding/crowd-connect-logo-text-long-white-big.png"
                 alt="Crowd·Connect"
                 width={380}
                 height={82}
@@ -66,7 +66,7 @@ export function ProductChoiceSection() {
           <article className="product-choice-card product-choice-card--wedding">
             <div className="product-choice-card-top">
               <Image
-                src="/wedding-connect-logo-text-long-white-big.png"
+                src="/branding/wedding-connect-logo-text-long-white-big.png"
                 alt="Wedding·Connect"
                 width={400}
                 height={82}
@@ -80,7 +80,12 @@ export function ProductChoiceSection() {
               QR am Tisch, Spiele auf dem Handy, große Momente auf der Leinwand.
               Couple-Trivia, Foto-Wall und Leaderboard, ohne App-Download.
             </p>
-            <a href="/wedding-connect" className="product-choice-link">
+            <a
+              href="https://wedding-connect.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="product-choice-link"
+            >
               Konzept entdecken
               <svg
                 width="14"

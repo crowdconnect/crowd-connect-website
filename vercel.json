@@ -4,8 +4,24 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "rewrites": [
-    { "source": "/impressum", "destination": "/impressum.html" },
-    { "source": "/datenschutz", "destination": "/datenschutz.html" },
-    { "source": "/wedding-connect", "destination": "/wedding-connect/index.html" }
+    { "source": "/impressum", "destination": "/legal/impressum.html" },
+    { "source": "/datenschutz", "destination": "/legal/datenschutz.html" }
+  ],
+  "redirects": [
+    {
+      "source": "/wedding-connect",
+      "destination": "https://wedding-connect.de",
+      "permanent": true
+    },
+    {
+      "source": "/classic.html",
+      "destination": "/legacy/classic.html",
+      "permanent": true
+    },
+    {
+      "source": "/classic.css",
+      "destination": "/legacy/classic.css",
+      "permanent": true
+    }
   ]
 }

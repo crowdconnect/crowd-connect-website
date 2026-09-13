@@ -11,13 +11,20 @@ npm start        # Production server
 npm run legacy   # Old Express static server (pre-migration)
 ```
 
-Legacy full single-page site: `/classic.html` (formerly `index.html`).
+Legacy full single-page site: `/legacy/classic.html` (redirect from `/classic.html`).
 
 ## Structure
 
-- `app/` , Next.js routes (`page.tsx`, `api/contact/route.ts`)
-- `components/ui/` , shadcn-compatible UI primitives (e.g. `container-scroll-animation.tsx`)
-- `public/` , static assets, impressum, datenschutz, classic HTML
+- `app/` — Next.js routes (`page.tsx`, `api/contact/route.ts`)
+- `components/ui/` — shadcn-compatible UI primitives (e.g. `container-scroll-animation.tsx`)
+- `public/branding/` — Crowd.Connect logos, favicon; one Wedding.Connect logo for product-picker card
+- `public/media/` — hero video, poster, product preview image
+- `public/legal/` — impressum, datenschutz (rewritten to `/impressum`, `/datenschutz`)
+- `public/legacy/` — classic.html, classic.css (pre-migration monolith)
+- `public/fragments/` — HTML chunks loaded by React homepage
+- `public/scripts/` — consent, nav, demo-live client scripts
+
+Wedding.Connect is a separate project: `wedding-connect-website/` on `wedding-connect.de`. The homepage product picker links there externally; `/wedding-connect` redirects with 301.
 
 ## Design Context
 

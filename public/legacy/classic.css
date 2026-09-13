@@ -315,7 +315,7 @@
   @media (prefers-reduced-motion: reduce) {
     .hero-video { display: none !important; }
     .hero {
-      background-image: url('hero-poster.jpg');
+      background-image: url('/media/hero-poster.jpg');
       background-size: cover;
       background-position: center;
     }
