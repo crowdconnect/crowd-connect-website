@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crowd.Connect · Aus stillen Tischen wird eine Crowd.</title>
+<meta name="description" content="Crowd.Connect verbindet Tische, Smartphones und TVs in Bars, Clubs und Restaurants: digitale Speisekarte, Service-Ruf, Drink-to-Table, TV-Games, Music Voting und GEMA-Dokumentation. Ohne App, ohne Hardware-Kauf.">
+<meta name="theme-color" content="#0A0E18">
+<link rel="canonical" href="https://crowd-connect.de">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://crowd-connect.de">
+<meta property="og:title" content="Crowd.Connect · Aus stillen Tischen wird eine Crowd.">
+<meta property="og:description" content="Derselbe Abend, zweimal: einmal wie heute, einmal mit Crowd.Connect. Das Betreiber-System für Bars, Clubs und Restaurants.">
+<meta property="og:image" content="https://crowd-connect.de/assets/img/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg">
+<script>(function(d){d.className=d.className.replace('no-js','js');setTimeout(function(){d.classList.add('is-loaded')},2500);})(document.documentElement);</script>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="clover" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-linecap="round">
+        <path d="M32.110 44.026A24.87 24.87 0 1 1 67.890 44.026"/>
+        <path d="M44.026 67.890A24.87 24.87 0 1 1 44.026 32.110"/>
+        <path d="M55.974 32.110A24.87 24.87 0 1 1 55.974 67.890"/>
+        <path d="M67.890 55.974A24.87 24.87 0 1 1 32.110 55.974"/>
+      </g>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></g></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.8h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></g></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8.5" r="2"/><circle cx="16" cy="9.5" r="2"/><circle cx="9.5" cy="16" r="2"/><path d="M9.8 9.2l4.3.6M9 10.4l.3 3.6" stroke-dasharray="1.5 2"/></g></symbol>
+    <symbol id="i-glass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14l-7 8z"/><path d="M12 12v8M8.5 20h7"/><circle cx="16.5" cy="4.5" r="1.8"/></g></symbol>
+    <symbol id="i-tv" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20.5h6M12 16.5v4"/><path d="M8 12.5l2.5-3 2 2 3-3.5"/></g></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5.5l11-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></g></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M12 13.5l1 2 2.2.3-1.6 1.5.4 2.2-2-1.1-2 1.1.4-2.2-1.6-1.5 2.2-.3z"/></g></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M6.5 20v-7M11.5 20V5M16.5 20v-10"/><path d="M19 4.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/></g></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h4"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.6-3 7.8-7 9.5-4-1.7-7-4.9-7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-block" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M6.5 17.5l11-11"/></g></symbol>
+  </defs>
+</svg>
+
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="nav" data-nav>
+  <a class="nav__brand" href="#stille" aria-label="Crowd.Connect, zum Anfang"><img src="assets/img/logo-long-white.png" alt="Crowd.Connect" width="176" height="29"></a>
+  <nav class="nav__links" aria-label="Kapitel">
+    <a href="#bon" data-navlink="bon">Der Abend</a>
+    <a href="#crowd" data-navlink="welten">Welten</a>
+    <a href="#zahlen" data-navlink="zahlen">Zahlen</a>
+    <a href="#pakete" data-navlink="pakete">Pakete</a>
+    <a href="#morgen" data-navlink="fragen">Fragen</a>
+  </nav>
+  <a class="btn btn--primary btn--sm nav__cta" href="#pilot">Pilot anfragen</a>
+  <span class="nav__progress" aria-hidden="true"><i></i></span>
+</header>
+
+<aside class="hud" aria-hidden="true" data-hud>
+  <div class="hud__top"><span class="hud__day">FR</span><span class="hud__time">21:14</span><span class="hud__title">Live</span><i class="hud__live"></i></div>
+  <dl class="hud__rows">
+    <div class="hud__row"><dt class="hud__revk">Umsatz heute</dt><dd class="hud__rev">640 €</dd></div>
+    <div class="hud__row hud__row--tables"><dt>Tische aktiv</dt><dd class="hud__tables">6/18</dd></div>
+    <div class="hud__row hud__row--mood"><dt>Stimmung</dt><dd class="hud__mood"><i></i><i></i><i></i><i></i><i></i></dd></div>
+  </dl>
+  <p class="hud__note">Beispielwerte</p>
+  <div class="hud__pops"></div>
+</aside>
+
+<main id="inhalt">
+
+<!-- ============ 1 · STILLE (HERO) ============ -->
+<section class="hero" id="stille" aria-labelledby="hero-title" data-scene="stille">
+  <div class="hero__media" data-lens>
+    <img class="hero__img hero__img--before" src="assets/img/bar_before-1920.webp" srcset="assets/img/bar_before-1280.webp 1280w, assets/img/bar_before-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Eine stille Bar am Freitagabend: wenige Gäste, jeder schaut allein auf sein Handy." fetchpriority="high" decoding="async">
+    <img class="hero__img hero__img--after" src="assets/img/bar_after-1920.webp" srcset="assets/img/bar_after-1280.webp 1280w, assets/img/bar_after-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="" aria-hidden="true" decoding="async">
+    <svg class="lens-rim" viewBox="0 0 100 100" aria-hidden="true"><use href="#clover"/></svg>
+    <span class="lens-tag" aria-hidden="true">Mit Crowd.Connect</span>
+    <div class="hero__shade" aria-hidden="true"></div>
+  </div>
+  <div class="hero__content">
+    <p class="eyebrow"><span class="dot dot--dim"></span>Freitag · 21:14 · Tisch 4 sitzt still</p>
+    <h1 id="hero-title" class="display hero__title"><span class="line">Aus stillen Tischen</span> <span class="line">wird eine <em>Crowd.</em></span></h1>
+    <p class="lead hero__lead">Crowd.Connect verbindet Tische, Smartphones und TVs in deiner Bar, deinem Club, deinem Restaurant. Gäste scannen, bestellen, voten, spielen. Deine Crew sieht alles live. Ohne App, ohne Hardware-Kauf.</p>
+    <div class="actions">
+      <a class="btn btn--primary" href="#pilot">Pilot anfragen</a>
+      <a class="btn btn--ghost" href="#bon">Den Abend erleben <span aria-hidden="true">↓</span></a>
+    </div>
+    <ul class="chips" aria-label="Konditionen">
+      <li>Ohne Hardware-Kauf</li>
+      <li>Monatlich kündbar</li>
+      <li>Pilot in 4 Wochen</li>
+    </ul>
+  </div>
+  <p class="hero__hint" aria-hidden="true"><span class="hint-fine">Fahr mit der Maus durch die Bar: So sieht derselbe Abend mit Crowd.Connect aus.</span><span class="hint-coarse">Zieh mit dem Finger über das Bild: So sieht derselbe Abend mit Crowd.Connect aus.</span></p>
+  <div class="scrollcue" aria-hidden="true"><span>Scroll: derselbe Abend, zweimal</span><i></i></div>
+</section>
+
+<!-- ============ 2 · DER BON + REWIND + PORTAL ============ -->
+<section class="act1" id="bon" aria-labelledby="bon-title" data-scene="bon">
+  <div class="act1__stage">
+    <div class="act1__bg" aria-hidden="true"><img src="assets/img/bar_before-1920.webp" srcset="assets/img/bar_before-1280.webp 1280w, assets/img/bar_before-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="" loading="lazy" decoding="async"></div>
+    <div class="act1__grid">
+      <div class="act1__copy">
+        <p class="eyebrow">Aus dem Schichtbuch</p>
+        <h2 id="bon-title" class="h2">Sechs Stellen, an denen dein Laden jeden Abend Geld liegen lässt.</h2>
+        <p class="body-l">Betreiber kaufen kein Infotainment. Sie kaufen Stammgäste, weniger Leerlauf hinter dem Tresen und Zahlen am Monatsende, die stimmen.</p>
+        <p class="act1__kicker">Das hier ist der Bon, den dir keine Kasse druckt.</p>
+      </div>
+      <div class="printer">
+        <div class="printer__paper">
+          <article class="receipt" aria-label="Bon: sechs typische Verluste eines Abends">
+            <header class="receipt__head">
+              <strong>Schichtbuch</strong>
+              <span>Bon 0214 · Kasse 1 · Freitag</span>
+              <span>Bedienung: alle · Tische: 18</span>
+            </header>
+            <ol class="receipt__items">
+              <li class="ri" data-time="21:14">
+                <p class="ri__meta"><span>01</span><span>FR 21:14</span></p>
+                <p class="ri__text">Tisch 4 sitzt seit dem Aperitif still.</p>
+                <p class="ri__sub">3 Personen · 4 Drinks · 3 Stunden</p>
+                <p class="ri__miss"><span>Fehlt</span>ein Anlass zum Reden</p>
+              </li>
+              <li class="ri" data-time="22:47">
+                <p class="ri__meta"><span>02</span><span>SA 22:47</span></p>
+                <p class="ri__text">Der TV im Eck spielt YouTube. Werbung, dann Tagesschau.</p>
+                <p class="ri__sub">Niemand schaut. Niemand bestellt.</p>
+                <p class="ri__miss"><span>Fehlt</span>ein Screen, der verkauft</p>
+              </li>
+              <li class="ri" data-time="23:09">
+                <p class="ri__meta"><span>03</span><span>SO 23:09</span></p>
+                <p class="ri__text">Der Stammgast bestellt wieder denselben Whisky.</p>
+                <p class="ri__sub">Was er sonst mag, steht nirgends.</p>
+                <p class="ri__miss"><span>Fehlt</span>Wissen statt Vermutung</p>
+              </li>
+              <li class="ri" data-time="00:31">
+                <p class="ri__meta"><span>04</span><span>MI 00:31</span></p>
+                <p class="ri__text">Service ruft ein Bier quer durchs Lokal.</p>
+                <p class="ri__sub">Tisch 11 wartet drei Minuten und schaut zum Ausgang.</p>
+                <p class="ri__miss"><span>Fehlt</span>ein Tap statt eines Schreis</p>
+              </li>
+              <li class="ri" data-time="02:14">
+                <p class="ri__meta"><span>05</span><span>02:14 · Eventnacht</span></p>
+                <p class="ri__text">Themenabend seit zwei Wochen geplant. Drei Tische da.</p>
+                <p class="ri__sub">Das Plakat am Eingang reicht nicht mehr.</p>
+                <p class="ri__miss"><span>Fehlt</span>Events am Tisch und auf jedem Screen</p>
+              </li>
+              <li class="ri" data-time="Q">
+                <p class="ri__meta"><span>06</span><span>Jedes Quartal</span></p>
+                <p class="ri__text">Neue Saison, neue Drinks, neue GEMA-Frist.</p>
+                <p class="ri__sub">Heute nicht? Dann kommt die Mahnung.</p>
+                <p class="ri__miss"><span>Fehlt</span>Doku, die einfach da ist</p>
+              </li>
+            </ol>
+            <footer class="receipt__foot">
+              <p class="receipt__sum"><span>Summe</span><strong>Ein Abend unter seinen Möglichkeiten.</strong></p>
+              <p class="receipt__thanks">Vielen Dank für Ihren Besuch.<br>Kein Beleg für verpasste Umsätze.</p>
+              <div class="barcode" aria-hidden="true"></div>
+            </footer>
+          </article>
+        </div>
+        <div class="printer__body" aria-hidden="true"><span class="printer__slot"></span><span class="printer__led"></span><span class="printer__label">Kasse 1</span></div>
+      </div>
+    </div>
+
+    <div class="rewind" id="rewind">
+      <div class="rewind__lines" aria-hidden="true"></div>
+      <p class="rewind__clock" aria-hidden="true"><span data-rclock>02:14</span></p>
+      <p class="rewind__badge" aria-hidden="true"><span>◀◀</span> Zurück auf 19:00</p>
+      <h2 class="rewind__line rewind__line--1 display">Und jetzt nochmal.</h2>
+      <p class="rewind__line rewind__line--2">Gleicher Abend. Gleiche Gäste. Gleicher Laden.</p>
+      <div class="rewind__clover" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="3.75" stroke-linecap="round">
+          <path class="cl-p" d="M32.110 44.026A24.87 24.87 0 1 1 67.890 44.026"/>
+          <path class="cl-p" d="M44.026 67.890A24.87 24.87 0 1 1 44.026 32.110"/>
+          <path class="cl-p" d="M55.974 32.110A24.87 24.87 0 1 1 55.974 67.890"/>
+          <path class="cl-p" d="M67.890 55.974A24.87 24.87 0 1 1 32.110 55.974"/>
+        </g></svg>
+      </div>
+      <p class="rewind__line rewind__line--3">Diesmal mit <strong>Crowd.Connect.</strong></p>
+      <div class="portal" aria-hidden="true">
+        <img class="portal__img" src="assets/img/bar_after-1920.webp" srcset="assets/img/bar_after-1280.webp 1280w, assets/img/bar_after-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="" loading="lazy" decoding="async">
+        <div class="portal__shade"></div>
+        <svg class="portal__rim" viewBox="0 0 100 100"><use href="#clover"/></svg>
+      </div>
+      <div class="portal__content" id="crowd" data-scene="crowd" data-pin-end aria-labelledby="crowd-title">
+        <p class="eyebrow eyebrow--mint"><span class="dot"></span>Derselbe Abend · mit Crowd.Connect</p>
+        <h2 id="crowd-title" class="display display--l"><span class="line">Jeder Tisch interaktiv.</span> <span class="line">Jeder Screen Umsatz&shy;potential.</span></h2>
+        <p class="lead">Eine Plattform für Tische, Smartphones und TVs. Gäste scannen den QR-Code am Tisch: keine App, kein Login. Deine Crew sieht alles im Dashboard. Folge dem Abend durch vier Welten, vom Dinner bis zum letzten Track.</p>
+        <ol class="worlds-index">
+          <li><a href="#restaurant"><span class="wi__time">19:30</span><span class="wi__name">Restaurant</span><span class="wi__what">Karte &amp; Service-Ruf</span></a></li>
+          <li><a href="#sportsbar"><span class="wi__time">21:48</span><span class="wi__name">Sportsbar</span><span class="wi__what">TV-Games</span></a></li>
+          <li><a href="#bar"><span class="wi__time">22:47</span><span class="wi__name">Cocktailbar</span><span class="wi__what">Drink-to-Table</span></a></li>
+          <li><a href="#club"><span class="wi__time">00:30</span><span class="wi__name">Club</span><span class="wi__what">Music Voting</span></a></li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 4 · WELT 01 RESTAURANT ============ -->
+<section class="world world--restaurant" id="restaurant" data-world="restaurant" data-scene="restaurant" aria-labelledby="w-restaurant">
+  <div class="world__stage">
+    <div class="world__media" data-bloom data-origin="0.535,0.63">
+      <img class="wm wm--before" src="assets/img/restaurant_before-1920.webp" srcset="assets/img/restaurant_before-1280.webp 1280w, assets/img/restaurant_before-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Vorher: Ein Gast winkt, die einzige Kellnerin ist weit weg und voll beladen." loading="lazy" decoding="async">
+      <img class="wm wm--after" src="assets/img/restaurant_after-1920.webp" srcset="assets/img/restaurant_after-1280.webp 1280w, assets/img/restaurant_after-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Mit Crowd.Connect: Die Kellnerin ist am Tisch, der Gast hat per Handy gerufen." loading="lazy" decoding="async">
+      <svg class="bloom-rim" viewBox="0 0 100 100" aria-hidden="true"><use href="#clover"/></svg>
+      <div class="world__shade" aria-hidden="true"></div>
+    </div>
+    <div class="world__intro">
+      <p class="world__label"><span>Welt 01</span><span>Restaurant</span><span class="world__time">19:30</span></p>
+      <h2 id="w-restaurant" class="h2 world__title">Service-Call statt Winken.</h2>
+      <p class="world__caption"><span class="cap cap--before"><b>Vorher</b>Winken, warten, schauen.</span><span class="cap cap--after"><b>Mit Crowd.Connect</b>Ein Tap. Die Crew kommt.</span></p>
+    </div>
+    <div class="world__body">
+      <div class="world__copy">
+        <p>Drei Tische, eine Kellnerin: Einer will zahlen, einer noch ein Glas Wein, einer sucht die Toilette. Mit Crowd.Connect tippt der Gast, die Crew sieht Tisch und Anliegen sofort. Kein Winken, kein „Hallo?!“, kein verlorenes Trinkgeld.</p>
+        <ul class="features">
+          <li><svg class="ico"><use href="#i-menu"/></svg>Digitale Karte mit Allergenen, Bildern und Sprachen</li>
+          <li><svg class="ico"><use href="#i-bell"/></svg>Service-Ruf mit Anliegen: zahlen, nachbestellen, Hilfe</li>
+          <li><svg class="ico"><use href="#i-check"/></svg>Bestellen und bezahlen am Tisch mit Crowd.Order und Crowd.Pay</li>
+          <li><svg class="ico"><use href="#i-chart"/></svg>Rate Us holt Google-Bewertungen, wenn der Abend gut war</li>
+        </ul>
+      </div>
+      <div class="world__device device-restaurant">
+        <p class="tryit"><span class="tryit__dot"></span>Probier’s aus: Du sitzt an Tisch 9.</p>
+        <div class="phone phone--menu" data-menu>
+          <div class="phone__frame">
+            <div class="phone__notch" aria-hidden="true"></div>
+            <div class="phone__screen">
+              <div class="pm__top">
+                <span class="pm__table">Tisch 9</span>
+                <div class="pm__lang" role="group" aria-label="Sprache der Karte">
+                  <button type="button" aria-pressed="true" data-lang="de">DE</button>
+                  <button type="button" aria-pressed="false" data-lang="en">EN</button>
+                  <button type="button" aria-pressed="false" data-lang="it">IT</button>
+                </div>
+              </div>
+              <p class="pm__title" data-i18n="title">Speisekarte</p>
+              <div class="pm__tabs" aria-hidden="true"><span class="is-on" data-i18n="tab1">Vorspeisen</span><span data-i18n="tab2">Hauptgänge</span><span data-i18n="tab3">Wein</span></div>
+              <ul class="pm__list">
+                <li><div><b data-i18n="i1">Burrata, Tomate, Basilikum</b><span class="pm__tag" data-i18n="lac">Laktose</span></div><span class="pm__price">12,50 €</span></li>
+                <li><div><b data-i18n="i2">Risotto al limone</b><span class="pm__tag" data-i18n="lac">Laktose</span></div><span class="pm__price">18,90 €</span></li>
+                <li><div><b data-i18n="i3">Tagliata vom Rind, Rucola</b></div><span class="pm__price">26,00 €</span></li>
+                <li><div><b data-i18n="i4">Grauburgunder, 0,2 l</b><span class="pm__tag" data-i18n="sul">Sulfite</span></div><span class="pm__price">7,40 €</span></li>
+              </ul>
+              <div class="pm__call">
+                <div class="pm__sheet" id="pm-sheet" hidden>
+                  <button type="button" data-call="pay" data-i18n="pay">Bitte zahlen</button>
+                  <button type="button" data-call="more" data-i18n="more">Nachbestellen</button>
+                  <button type="button" data-call="help" data-i18n="help">Hilfe</button>
+                </div>
+                <button type="button" class="pm__callbtn" aria-expanded="false" aria-controls="pm-sheet"><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="call">Service rufen</span></button>
+                <p class="pm__toast" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="crew" aria-live="polite">
+          <p class="crew__head"><span>Crew · Live</span><i class="crew__dot" aria-hidden="true"></i></p>
+          <ul class="crew__list">
+            <li class="crew__item is-done"><b>Tisch 3</b><span>Nachbestellen · 2× Hauswein</span><em>erledigt</em></li>
+            <li class="crew__item is-done"><b>Tisch 6</b><span>Bitte zahlen</span><em>erledigt</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · WELT 02 SPORTSBAR ============ -->
+<section class="world world--sports" id="sportsbar" data-world="sports" data-scene="sportsbar" aria-labelledby="w-sports">
+  <div class="world__stage">
+    <div class="world__media" data-bloom data-origin="0.5,0.34" data-screen="0.377,0.235,0.55,0.35">
+      <img class="wm wm--before" src="assets/img/sports_before-1920.webp" srcset="assets/img/sports_before-1280.webp 1280w, assets/img/sports_before-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Vorher: Halbzeitpause in der Sportsbar, auf dem großen Screen läuft graue Werbung, alle starren auf ihr Handy." loading="lazy" decoding="async">
+      <img class="wm wm--after" src="assets/img/sports_after-1920.webp" srcset="assets/img/sports_after-1280.webp 1280w, assets/img/sports_after-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Mit Crowd.Connect: Auf dem großen Screen läuft das Halbzeit-Quiz, die Fans jubeln und klatschen sich ab." loading="lazy" decoding="async">
+      <svg class="bloom-rim" viewBox="0 0 100 100" aria-hidden="true"><use href="#clover"/></svg>
+      <div class="world__shade" aria-hidden="true"></div>
+    </div>
+    <div class="world__intro">
+      <p class="world__label"><span>Welt 02</span><span>Sportsbar</span><span class="world__time">21:48</span></p>
+      <h2 id="w-sports" class="h2 world__title">Halbzeit ist Quizzeit.</h2>
+      <p class="world__caption"><span class="cap cap--before"><b>Vorher</b>Werbepause. Alle am Handy, keiner an der Theke.</span><span class="cap cap--after"><b>Mit Crowd.Connect</b>Alle am Handy. Und alle im Spiel.</span></p>
+    </div>
+    <div class="world__body">
+      <div class="world__copy">
+        <p>Champions League, Halbzeit: Die Bar wechselt für 14 Minuten in den Quiz-Modus. Jeder Tisch antwortet am Handy, das Leaderboard läuft live auf allen Screens. Sieger-Tisch: ein Schnaps aufs Haus. Alle anderen: 10&nbsp;% aufs nächste Bier.</p>
+        <ul class="features">
+          <li><svg class="ico"><use href="#i-tv"/></svg>Quiz, Voting und Tisch-Duelle auf deinen vorhandenen TVs</li>
+          <li><svg class="ico"><use href="#i-chart"/></svg>Leaderboard live, Score pro Tisch</li>
+          <li><svg class="ico"><use href="#i-calendar"/></svg>Champions-League-Modus und eigene Promo-Slots</li>
+        </ul>
+      </div>
+      <div class="world__device device-sports">
+        <p class="tryit"><span class="tryit__dot"></span>Probier’s aus: Du bist Tisch 5. Beantworte die Frage.</p>
+        <div class="tv tv--quiz" data-quiz-tv>
+          <div class="tv__screen">
+            <div class="tvq">
+              <div class="tvq__head"><span class="mode-tag">▮ Game Mode</span><span>Halbzeit-Quiz · Frage 3/5</span><span class="tvq__timer"><i></i><b data-qtimer>0:14</b></span></div>
+              <div class="tvq__body">
+                <div class="tvq__main">
+                  <p class="tvq__q">In welcher Minute fiel das Siegtor im WM-Finale 2014?</p>
+                  <ol class="tvq__answers">
+                    <li data-a="88"><b>A</b>88.</li>
+                    <li data-a="105"><b>B</b>105.</li>
+                    <li data-a="113"><b>C</b>113.</li>
+                    <li data-a="120"><b>D</b>120.</li>
+                  </ol>
+                </div>
+                <ol class="tvq__board" aria-label="Leaderboard">
+                  <li data-team="7" data-score="240"><span>Tisch 7</span><b>240</b></li>
+                  <li data-team="3" data-score="195"><span>Tisch 3</span><b>195</b></li>
+                  <li data-team="12" data-score="180"><span>Tisch 12</span><b>180</b></li>
+                  <li data-team="5" data-score="150" class="is-you"><span>Tisch 5 · du</span><b>150</b></li>
+                  <li data-team="4" data-score="110"><span>Tisch 4</span><b>110</b></li>
+                </ol>
+              </div>
+              <p class="tvq__foot" data-qfoot>Sieger-Tisch: Schnaps aufs Haus · alle anderen: 10&nbsp;% aufs nächste Bier</p>
+            </div>
+          </div>
+        </div>
+        <div class="phone phone--quiz" data-quiz-phone>
+          <div class="phone__frame">
+            <div class="phone__notch" aria-hidden="true"></div>
+            <div class="phone__screen">
+              <p class="pq__top"><span>Tisch 5</span><span class="pq__mode">Halbzeit-Quiz</span></p>
+              <p class="pq__q">In welcher Minute fiel das Siegtor im WM-Finale 2014?</p>
+              <div class="pq__answers">
+                <button type="button" data-a="88"><b>A</b>88.</button>
+                <button type="button" data-a="105"><b>B</b>105.</button>
+                <button type="button" data-a="113"><b>C</b>113.</button>
+                <button type="button" data-a="120"><b>D</b>120.</button>
+              </div>
+              <p class="pq__result" aria-live="polite"></p>
+              <button type="button" class="pq__again" hidden>Nochmal spielen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5b · TV STATT TAPETE ============ -->
+<section class="tvmodes" id="tv" aria-labelledby="tvm-title" data-scene="tv">
+  <div class="tvmodes__head">
+    <p class="eyebrow">TV statt Tapete</p>
+    <h2 id="tvm-title" class="h2">Ein Fernseher, drei Modi.</h2>
+    <p class="body-l">Vorhandene Screens, neuer Inhalt. Der Player läuft auf Android-TV-Stick, Mini-PC oder direkt im Browser. Wer schon Fernseher hat, hat die Hardware schon.</p>
+  </div>
+  <div class="tvmodes__grid">
+    <figure class="mode">
+      <div class="tv tv--mini">
+        <div class="tv__screen mini mini--music">
+          <span class="mode-tag">▮ Music Mode</span>
+          <p class="mini__k">Jetzt läuft</p>
+          <p class="mini__title">Aperol Spritz Anthem</p>
+          <div class="mini__progress"><i></i></div>
+          <ol class="mini__next"><li><span>Midnight Fizz</span><b style="--p:.46"></b></li><li><span>Glockenbach Groove</span><b style="--p:.32"></b></li><li><span>Neon Tide</span><b style="--p:.22"></b></li></ol>
+        </div>
+      </div>
+      <figcaption><b>Music Mode</b>Aktueller Song, Voting, nächste Tracks. Gäste stimmen vom Tisch ab.</figcaption>
+    </figure>
+    <figure class="mode">
+      <div class="tv tv--mini">
+        <div class="tv__screen mini mini--game">
+          <span class="mode-tag">▮ Game Mode</span>
+          <p class="mini__q">Welche Farbe hat der Aperol?</p>
+          <ol class="mini__board"><li><span>Tisch 7</span><b>240</b></li><li><span>Tisch 3</span><b>195</b></li><li><span>Tisch 12</span><b>180</b></li><li><span>Tisch 4</span><b>110</b></li></ol>
+        </div>
+      </div>
+      <figcaption><b>Game Mode</b>Quiz, Tisch-Duelle, Reaktionsspiele. Leaderboard live, Score nach Tisch.</figcaption>
+    </figure>
+    <figure class="mode">
+      <div class="tv tv--mini">
+        <div class="tv__screen mini mini--social">
+          <span class="mode-tag">▮ Social Mode</span>
+          <p class="mini__k">Drink from Table 7</p>
+          <p class="mini__title">Tisch 12, prost.</p>
+          <p class="mini__small">Anonym. Optional blockbar.</p>
+          <div class="mini__emojis" aria-hidden="true"><span>🥂</span><span>🔥</span><span>🙌</span><span>😄</span><span>💃</span></div>
+        </div>
+      </div>
+      <figcaption><b>Social Mode</b>Anonyme Grüße, Emoji-Wall, „Drink sent to Table X“. Stimmung statt Stille.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 6 · WELT 03 COCKTAILBAR ============ -->
+<section class="world world--bar" id="bar" data-world="bar" data-scene="bar" aria-labelledby="w-bar">
+  <div class="world__stage">
+    <div class="world__media" data-bloom data-origin="0.42,0.62">
+      <img class="wm wm--before" src="assets/img/cocktail_before-1920.webp" srcset="assets/img/cocktail_before-1280.webp 1280w, assets/img/cocktail_before-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Vorher: Drei Freunde sitzen still vor leeren Gläsern und schauen auf ihre Handys, die Gruppe dahinter auch." loading="lazy" decoding="async">
+      <img class="wm wm--after" src="assets/img/cocktail_after-1920.webp" srcset="assets/img/cocktail_after-1280.webp 1280w, assets/img/cocktail_after-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Mit Crowd.Connect: Ein Kellner bringt zwei Aperol Spritz, die Freunde drehen sich überrascht um, der Nachbartisch prostet ihnen zu." loading="lazy" decoding="async">
+      <svg class="bloom-rim" viewBox="0 0 100 100" aria-hidden="true"><use href="#clover"/></svg>
+      <div class="world__shade" aria-hidden="true"></div>
+    </div>
+    <div class="world__intro">
+      <p class="world__label"><span>Welt 03</span><span>Cocktailbar</span><span class="world__time">22:47</span></p>
+      <h2 id="w-bar" class="h2 world__title world__title--quote">„Tisch 7, 22:47. Zwei Aperol an Tisch 12. Tisch 12 dreht sich um.“</h2>
+      <p class="world__caption"><span class="cap cap--before"><b>Vorher</b>Vier Tische, vier Inseln.</span><span class="cap cap--after"><b>Mit Crowd.Connect</b>Ein Drink, ein Anlass zum Reden.</span></p>
+    </div>
+    <div class="world__body">
+      <div class="world__copy">
+        <p>Drink-to-Table: acht Sekunden vom Scan zum Cheers. Gäste schicken Drinks an andere Tische, anonym und mit eindeutiger Tischzuordnung. Der Sender zahlt sofort oder am Ende auf der Rechnung, deine Crew bringt den Drink.</p>
+        <div class="safety">
+          <p class="safety__head"><svg class="ico"><use href="#i-shield"/></svg>Schutz im System</p>
+          <p>Wer keine Drinks will, blockt mit einem Tap. Limits pro Stunde. Keine echten Namen, keine Fotos ohne Opt-in. Jede Session ist manipulationssicher an genau einen Tisch gebunden. Für Eventnächte wie die Ladies Night legst du fest, wer senden darf.</p>
+        </div>
+      </div>
+      <div class="world__device device-bar">
+        <p class="tryit"><span class="tryit__dot"></span>Probier’s aus: Du bist Tisch 7. Tippe einen Tisch an.</p>
+        <div class="barmap" data-barmap>
+          <div class="barmap__head"><span>Bar-Map</span><span><b>14</b> von 18 Tischen belegt</span></div>
+          <svg class="bm" viewBox="0 0 640 440" role="group" aria-label="Bar-Map mit 18 Tischen. Du bist Tisch 7.">
+            <rect class="bm-room" x="8" y="8" width="624" height="424" rx="22"/>
+            <rect class="bm-counter" x="40" y="30" width="370" height="30" rx="15"/>
+            <text class="bm-label bm-label--counter" x="225" y="50">BAR · COUNTER</text>
+            <path class="bm-door" d="M560 8 v24 a24 24 0 0 0 24 -24"/>
+            <text class="bm-label" x="596" y="46" text-anchor="end">EINGANG</text>
+            <rect class="bm-zone" x="26" y="160" width="286" height="256" rx="16"/>
+            <text class="bm-label" x="44" y="186">LOUNGE</text>
+            <rect class="bm-zone" x="328" y="160" width="286" height="256" rx="16"/>
+            <text class="bm-label" x="346" y="186">FENSTER</text>
+            <g class="bm-arcs"></g>
+            <g class="bm-tables">
+              <g class="bm-t" data-t="1" data-area="Counter" transform="translate(76 108)"><circle r="18"/><text y="5">1</text></g>
+              <g class="bm-t is-free" data-t="2" data-area="Counter" transform="translate(166 108)"><circle r="18"/><text y="5">2</text></g>
+              <g class="bm-t" data-t="3" data-area="Counter" transform="translate(256 108)"><circle r="18"/><text y="5">3</text></g>
+              <g class="bm-t is-blocked" data-t="4" data-area="Counter" transform="translate(346 108)"><circle r="18"/><text y="5">4</text><g class="bm-blockico" transform="translate(12 -26)"><circle r="9"/><path d="M-5 5L5 -5"/></g></g>
+              <g class="bm-t" data-t="17" data-area="Eingang" transform="translate(470 108)"><circle r="18"/><text y="5">17</text></g>
+              <g class="bm-t is-free" data-t="18" data-area="Eingang" transform="translate(560 108)"><circle r="18"/><text y="5">18</text></g>
+              <g class="bm-t" data-t="5" data-area="Lounge" transform="translate(90 240)"><circle r="23"/><text y="5">5</text></g>
+              <g class="bm-t" data-t="6" data-area="Lounge" transform="translate(172 240)"><circle r="23"/><text y="5">6</text></g>
+              <g class="bm-t is-you" data-t="7" data-area="Lounge" transform="translate(254 240)"><circle r="23"/><text y="5">7</text><text class="bm-you" y="-32">DU</text></g>
+              <g class="bm-t" data-t="8" data-area="Lounge" transform="translate(90 340)"><circle r="23"/><text y="5">8</text></g>
+              <g class="bm-t is-free" data-t="9" data-area="Lounge" transform="translate(172 340)"><circle r="23"/><text y="5">9</text></g>
+              <g class="bm-t" data-t="10" data-area="Lounge" transform="translate(254 340)"><circle r="23"/><text y="5">10</text></g>
+              <g class="bm-t" data-t="11" data-area="Fenster" transform="translate(390 240)"><circle r="23"/><text y="5">11</text></g>
+              <g class="bm-t is-target" data-t="12" data-area="Fenster" transform="translate(472 240)"><circle r="23"/><text y="5">12</text></g>
+              <g class="bm-t" data-t="13" data-area="Fenster" transform="translate(554 240)"><circle r="23"/><text y="5">13</text></g>
+              <g class="bm-t" data-t="14" data-area="Fenster" transform="translate(390 340)"><circle r="23"/><text y="5">14</text></g>
+              <g class="bm-t" data-t="15" data-area="Fenster" transform="translate(472 340)"><circle r="23"/><text y="5">15</text></g>
+              <g class="bm-t is-free" data-t="16" data-area="Fenster" transform="translate(554 340)"><circle r="23"/><text y="5">16</text></g>
+            </g>
+            <g class="bm-fx"></g>
+          </svg>
+          <div class="drinkpanel">
+            <p class="dp__to">An <b data-dp-to>Tisch 12</b> <span data-dp-area>· Fenster</span></p>
+            <div class="dp__options" role="radiogroup" aria-label="Drink auswählen">
+              <button type="button" role="radio" aria-checked="true" data-drink="2× Aperol Spritz" data-price="19.80">2× Aperol Spritz<b>19,80 €</b></button>
+              <button type="button" role="radio" aria-checked="false" data-drink="Gin Tonic" data-price="10.50">Gin Tonic<b>10,50 €</b></button>
+              <button type="button" role="radio" aria-checked="false" data-drink="Espresso Martini" data-price="11.00">Espresso Martini<b>11,00 €</b></button>
+            </div>
+            <div class="dp__row">
+              <label class="dp__msg"><input type="checkbox" checked data-dp-msg> Gruß: „Drink from Table 7“</label>
+              <button type="button" class="btn btn--pink btn--sm dp__send" data-dp-send>Drink senden</button>
+            </div>
+            <p class="dp__status" aria-live="polite" data-dp-status>Tisch 4 hat Drinks pausiert. Probier ihn ruhig aus.</p>
+          </div>
+          <ol class="stepper" aria-label="So funktioniert Drink-to-Table">
+            <li><b>01</b>QR am Tisch</li>
+            <li><b>02</b>Bar-Map</li>
+            <li><b>03</b>Tisch antippen</li>
+            <li><b>04</b>Crew bringt’s</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · WELT 04 CLUB ============ -->
+<section class="world world--club" id="club" data-world="club" data-scene="club" aria-labelledby="w-club">
+  <div class="world__stage">
+    <div class="world__media" data-bloom data-origin="0.46,0.5">
+      <img class="wm wm--before" src="assets/img/club_before-1920.webp" srcset="assets/img/club_before-1280.webp 1280w, assets/img/club_before-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Vorher: Eine fast leere Tanzfläche, ein paar Gäste stehen am Rand und schauen auf ihre Handys." loading="lazy" decoding="async">
+      <img class="wm wm--after" src="assets/img/club_after-1920.webp" srcset="assets/img/club_after-1280.webp 1280w, assets/img/club_after-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Mit Crowd.Connect: Eine volle Tanzfläche, Hände oben, pinke Lichtstrahlen, der DJ im Vordergrund." loading="lazy" decoding="async">
+      <svg class="bloom-rim" viewBox="0 0 100 100" aria-hidden="true"><use href="#clover"/></svg>
+      <div class="world__shade" aria-hidden="true"></div>
+      <div class="eq" aria-hidden="true"></div>
+      <div class="emojis" aria-hidden="true"></div>
+    </div>
+    <div class="world__intro">
+      <p class="world__label"><span>Welt 04</span><span>Club &amp; Lounge</span><span class="world__time">00:30</span></p>
+      <h2 id="w-club" class="h2 world__title">Der DJ wird zur Demokratie.</h2>
+      <p class="world__caption"><span class="cap cap--before"><b>Vorher</b>Die Tanzfläche wartet auf den richtigen Song.</span><span class="cap cap--after"><b>Mit Crowd.Connect</b>Die Crowd wählt ihn selbst.</span></p>
+    </div>
+    <div class="world__body">
+      <div class="world__copy">
+        <p>Der DJ legt eine kuratierte Playlist auf, die Gäste stimmen am Handy über die nächsten drei Tracks ab. Genres schaltest du frei: kein Heavy Metal um Mitternacht. Wer mitbestimmt, bleibt länger. Und wer länger bleibt, bestellt nochmal.</p>
+        <ul class="features">
+          <li><svg class="ico"><use href="#i-music"/></svg>Music Voting mit Genre-Freigabe durch dich</li>
+          <li><svg class="ico"><use href="#i-check"/></svg>Lizenzierte Wiedergabe per Music Controller</li>
+          <li><svg class="ico"><use href="#i-glass"/></svg>Emoji-Chat von Tisch zu Tisch, blockbar, ohne Freitext</li>
+          <li><svg class="ico"><use href="#i-calendar"/></svg>Event Mode für Themennächte, Turniere, Flirt-Night</li>
+        </ul>
+      </div>
+      <div class="world__device device-club">
+        <p class="tryit"><span class="tryit__dot"></span>Probier’s aus: Stimm für den nächsten Track.</p>
+        <div class="phone phone--vote" data-vote>
+          <div class="phone__frame">
+            <div class="phone__notch" aria-hidden="true"></div>
+            <div class="phone__screen">
+              <div class="pv__now">
+                <p class="pv__k">Jetzt läuft</p>
+                <p class="pv__song" data-nowplaying>Aperol Spritz Anthem</p>
+                <div class="pv__bar"><i></i></div>
+              </div>
+              <p class="pv__k">Stimm ab: nächster Track</p>
+              <div class="pv__tracks">
+                <button type="button" class="track" data-p="38"><span class="track__t">Midnight Fizz</span><span class="track__g">House</span><span class="track__pct">38 %</span><i class="track__fill"></i></button>
+                <button type="button" class="track" data-p="34"><span class="track__t">Glockenbach Groove</span><span class="track__g">Disco</span><span class="track__pct">34 %</span><i class="track__fill"></i></button>
+                <button type="button" class="track" data-p="28"><span class="track__t">Neon Tide</span><span class="track__g">Hip-Hop</span><span class="track__pct">28 %</span><i class="track__fill"></i></button>
+              </div>
+              <p class="pv__genres"><span class="g">House</span><span class="g">Disco</span><span class="g">Hip-Hop</span><span class="g g--off">Metal · gesperrt</span></p>
+              <p class="pv__status" aria-live="polite" data-vote-status>Eine Stimme pro Runde.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7b · EVENTS & HOCHZEITEN ============ -->
+<section class="events" id="events" aria-labelledby="events-title" data-scene="events">
+  <div class="events__inner">
+    <div class="events__screens" aria-hidden="true">
+      <div class="screens"></div>
+      <p class="screens__caption"><b>40</b> Tische · <b>12</b> Screens · <b>1</b> Leaderboard</p>
+    </div>
+    <div class="events__copy">
+      <p class="eyebrow">Eventlocation · Hochzeit · private Feier</p>
+      <h2 id="events-title" class="h2">Dieselbe Engine. Auch für die ganz großen Abende.</h2>
+      <div class="events__cards">
+        <article class="card">
+          <h3>Live-Quiz für 40 Tische auf 12 Screens</h3>
+          <p>Der Quizmaster fragt, jeder Tisch antwortet am Handy, das Leaderboard läuft live auf allen Screens. Zwischen den Runden: Werbung für die hauseigene Cocktailkarte. Kein Beamer, kein Drucker, keine Antwortbögen.</p>
+        </article>
+        <article class="card card--wedding">
+          <h3>Hochzeiten &amp; private Feiern</h3>
+          <p>QR am Tisch, Spiele auf dem Handy, große Momente auf der Leinwand. Couple-Trivia, Foto-Wall und Leaderboard, ohne App-Download.</p>
+          <a class="textlink" href="https://wedding-connect.de" target="_blank" rel="noopener noreferrer">Wedding.Connect entdecken <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 · 03:00 DASHBOARD ============ -->
+<section class="dash" id="zahlen" aria-labelledby="dash-title" data-scene="zahlen">
+  <div class="dash__stage">
+    <div class="dash__copy">
+      <p class="world__label"><span>03:00</span><span>Kasse zu</span></p>
+      <h2 id="dash-title" class="h2">Zahlen, die endlich aus dem Bauch raus sind.</h2>
+      <p>Das Dashboard zeigt, was sonst nur ein gutes Bauchgefühl ist: Umsatz pro Tisch, Verweildauer, Wiederkehrrate, beliebteste Drinks pro Wochentag. Live, pro Location, exportierbar.</p>
+      <ol class="dash__points">
+        <li><b>Live-Metriken</b>Echtzeit-Vergleich gegen den Schnitt der letzten zwölf gleichen Wochentage.</li>
+        <li><b>Stunden-Chart</b>Wann es zieht, wann du Promos startest, wann die Bar-Map voll ist.</li>
+        <li><b>Top Drinks</b>Was wirklich geht, nach Wochentag, Uhrzeit und Wetter. Karte, Specials und Schichtplan darauf abstimmen.</li>
+      </ol>
+    </div>
+    <div class="dashboard" role="img" aria-label="Beispiel-Dashboard eines Freitags: Umsatz 2.847 Euro, plus 27 Prozent gegenüber dem Freitag-Schnitt, 5,3 Bestellungen pro Tisch, Verweildauer 2 Stunden 14 Minuten, Top-Drink Aperol Spritz mit 42 Bestellungen.">
+      <div class="db__head"><span class="db__brand"><svg class="db__logo"><use href="#clover"/></svg>Crowd.Connect Dashboard</span><span>Freitag · 03:00</span><span class="db__tag">Beispielansicht</span></div>
+      <div class="db__kpis">
+        <div class="kpi"><span class="kpi__k">Umsatz heute</span><strong class="kpi__v" data-kpi="rev">2.847 €</strong><span class="kpi__d" data-kpi-delta>+27 % ggü. Freitag-Schnitt</span></div>
+        <div class="kpi"><span class="kpi__k">Order / Tisch</span><strong class="kpi__v" data-kpi="order">5,3</strong><span class="kpi__d">+1,2 ggü. Vorwoche</span></div>
+        <div class="kpi"><span class="kpi__k">Verweildauer</span><strong class="kpi__v" data-kpi="dwell">2:14</strong><span class="kpi__d">+19 Min. im Median</span></div>
+      </div>
+      <div class="db__grid">
+        <div class="db__chart">
+          <p class="db__label">Bestellungen pro Stunde <span>· 1 Punkt = 1 Bestellung</span></p>
+          <div class="chart" data-chart>
+            <ol class="chart__x"><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>00</li></ol>
+          </div>
+        </div>
+        <div class="db__top">
+          <p class="db__label">Top Drinks heute</p>
+          <ol class="topdrinks">
+            <li style="--w:1"><span>Aperol Spritz</span><b>×42</b></li>
+            <li style="--w:.667"><span>Old Fashioned</span><b>×28</b></li>
+            <li style="--w:.452"><span>Hugo</span><b>×19</b></li>
+            <li style="--w:.333"><span>Negroni</span><b>×14</b></li>
+            <li style="--w:.262"><span>Whisky Sour</span><b>×11</b></li>
+          </ol>
+        </div>
+      </div>
+      <p class="db__compare"><span>Gleicher Abend ohne Crowd.Connect</span><b>2.240 €</b></p>
+    </div>
+    <p class="dash__note">Beispielansicht mit Beispielwerten. Im Pilotbetrieb siehst du deine eigenen Zahlen in Echtzeit.</p>
+    <canvas class="pour" aria-hidden="true"></canvas>
+  </div>
+</section>
+
+<!-- ============ 9 · STAMMGÄSTE ============ -->
+<section class="regulars" id="stammgaeste" aria-labelledby="reg-title" data-scene="stammgaeste">
+  <div class="regulars__inner">
+    <div class="regulars__copy">
+      <p class="eyebrow">Stammkundschaft</p>
+      <h2 id="reg-title" class="h2">Loyalty erkennt, wer kommt. Analytics zeigt, was geht.</h2>
+      <ol class="steps3">
+        <li><b>01 · Wiedererkennung</b>Kein Account-Zwang. Beim ersten Scan entsteht ein anonymes Profil, beim nächsten Besuch wird es wiedererkannt. Punkte sammeln, ohne sich je zu registrieren.</li>
+        <li><b>02 · Analytics</b>Wiederkehrrate, Ø-Umsatz pro Kopf, Besuchsfrequenz nach Wochentag. Du siehst, wann dein Stammpublikum kommt, was es bestellt und wo der Weg vom Erstbesucher zum Stammgast abbricht.</li>
+        <li><b>03 · Reaktivierung</b>Wer vier Wochen nicht da war, landet in der Reaktivierungs-Queue. Beim nächsten Scan gibt’s automatisch ein Willkommens-Angebot. Kein CRM, kein Mailchimp. Den Trigger bestimmst du.</li>
+      </ol>
+    </div>
+    <div class="regulars__viz">
+      <article class="profile">
+        <div class="profile__head">
+          <span class="avatar" aria-hidden="true">M</span>
+          <div><h3>Marcus B.</h3><p class="profile__badge">★ Stammgast seit Okt 2025</p></div>
+          <span class="profile__tag">Stammgast-Profil</span>
+        </div>
+        <dl class="profile__stats">
+          <div><dt>Besuche</dt><dd data-count="23">23</dd></div>
+          <div><dt>Punkte</dt><dd data-count="840">840</dd></div>
+          <div><dt>Ø pro Abend</dt><dd>41 €</dd></div>
+        </dl>
+        <div class="visits">
+          <p class="visits__k">Besuche · letzte 12 Wochen <span>Fr / Sa</span></p>
+          <div class="visits__grid" aria-hidden="true"></div>
+        </div>
+        <dl class="profile__rows">
+          <div><dt>Lieblingsdrink</dt><dd>Negroni × 14</dd></div>
+          <div><dt>Zuletzt</dt><dd>vor 3 Tagen</dd></div>
+        </dl>
+      </article>
+      <article class="reactivate">
+        <p class="reactivate__k">Reaktivierung · 3 Stammgäste · letzter Besuch vor 4+ Wochen</p>
+        <ul>
+          <li><span>Sandra K.</span><b>28 Tage</b></li>
+          <li><span>Jan H.</span><b>31 Tage</b></li>
+          <li><span>Elif T.</span><b>35 Tage</b></li>
+        </ul>
+        <button type="button" class="switch" role="switch" aria-checked="false" data-reactivate><span class="switch__track"><i></i></span><span class="switch__label">Willkommens-Angebot beim nächsten Scan</span></button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · PAKETE ============ -->
+<section class="packs" id="pakete" aria-labelledby="packs-title" data-scene="pakete">
+  <div class="packs__head">
+    <p class="eyebrow">Pakete</p>
+    <h2 id="packs-title" class="h2">Klein starten. Sauber wachsen.</h2>
+    <p class="body-l">Du musst nicht alles auf einmal kaufen. Starte mit dem Basis-Paket und erweitere nach Schichten, Stimmung und Bedarf. Preise pro Location und Monat, ohne Hardware-Kauf.</p>
+  </div>
+  <div class="packs__tabs" role="group" aria-label="Paket auswählen">
+    <button type="button" aria-pressed="true" data-pack="basic"><b>Basic</b><span>ab 49 €/Monat</span></button>
+    <button type="button" aria-pressed="false" data-pack="social"><b>Social</b><span>ab 89 €/Monat</span></button>
+    <button type="button" aria-pressed="false" data-pack="screen"><b>Screen</b><span>ab 129 €/Monat</span></button>
+    <button type="button" aria-pressed="false" data-pack="music"><b>Music</b><span>ab 79 €/Monat</span></button>
+    <button type="button" aria-pressed="false" data-pack="compliance"><b>Compliance</b><span>auf Anfrage</span></button>
+  </div>
+  <p class="packs__tagline" aria-live="polite" data-pack-tagline>Karte und Service-Ruf. Der Einstieg für jede Location.</p>
+  <ul class="modules">
+    <li class="module" data-in="basic social screen music"><svg class="ico"><use href="#i-menu"/></svg><h3>Digital Menu</h3><p>Eigene Karte pro Location: Kategorien, Specials, Allergene, Bilder, Sprachen. Mit Crowd.Order und Crowd.Pay für Bestellung und Checkout am Tisch.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="basic social screen music"><svg class="ico"><use href="#i-bell"/></svg><h3>Call Waiter</h3><p>Ein Tap statt Winken. Die Crew sieht Tisch und Anliegen sofort, sortiert nach Zweck: zahlen, nachbestellen, Hilfe.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="social screen"><svg class="ico"><use href="#i-map"/></svg><h3>Bar Map</h3><p>Die abstrahierte Tischübersicht deiner Location, mit Bereichen, Etagen und Service-Zuständigkeiten. Grundlage aller sozialen Features.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="social"><svg class="ico"><use href="#i-glass"/></svg><h3>Drink-to-Table</h3><p>Gäste schicken Drinks an andere Tische. Anonym, blockbar, mit Limits pro Stunde.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="screen"><svg class="ico"><use href="#i-tv"/></svg><h3>TV Games &amp; Promo</h3><p>Quiz, Voting, Mini-Games und Tisch-Duelle auf vorhandenen Screens. Dazu eigene Werbeslots mit Zeitplan und Reichweiten-Statistik.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="music"><svg class="ico"><use href="#i-music"/></svg><h3>Music Voting &amp; Player</h3><p>Gäste voten die nächsten Tracks, du gibst die Genres frei. Lizenzierte Wiedergabe per Music Controller.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="social screen music"><svg class="ico"><use href="#i-calendar"/></svg><h3>Event Mode</h3><p>Themenabende, Turniere, Flirt-Night, Champions-League-Modus. Auf jedem Tisch und jedem Screen, ohne separates Marketing.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="social screen music"><svg class="ico"><use href="#i-chart"/></svg><h3>Loyalty &amp; Analytics</h3><p>Punkte, Badges, Stammgast-Funktionen und Auswertungen zu Umsatz pro Tisch, Verweildauer und Konversion.</p><span class="module__state">inklusive</span></li>
+    <li class="module" data-in="compliance"><svg class="ico"><use href="#i-doc"/></svg><h3>GEMA / GVL Setup</h3><p>Musik- und Screen-Nutzung strukturiert erfasst, Änderungen dokumentiert, alles exportierbar.</p><span class="module__state">inklusive</span></li>
+  </ul>
+  <p class="packs__note">Pakete kombinierbar. Multi-Location-Rabatte ab drei Standorten. Setup-Service optional für 290 € pro Location. Keine versteckten Hardware-Kosten, kein Lock-in.</p>
+</section>
+
+<!-- ============ 11 · DER MORGEN DANACH ============ -->
+<section class="day" id="morgen" aria-labelledby="faq-title" data-scene="morgen">
+  <div class="day__sky" aria-hidden="true"></div>
+  <figure class="day__hero">
+    <img src="assets/img/dawn-1920.webp" srcset="assets/img/dawn-1280.webp 1280w, assets/img/dawn-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="Die Bar am Morgen danach: aufgeräumt, auf dem Tresen stehen ein Kaffee und ein Tablet mit dem Dashboard." loading="lazy" decoding="async">
+    <figcaption class="day__time"><span>Samstag · 09:00</span>Der Morgen danach. Alles dokumentiert.</figcaption>
+  </figure>
+  <div class="day__inner">
+    <div class="faq">
+      <p class="eyebrow eyebrow--day">Sicherheit, Datenschutz, Kontrolle</p>
+      <h2 id="faq-title" class="h2">Sechs Fragen, die jeder Betreiber zuerst stellt.</h2>
+      <p class="body-l">Crowd.Connect ist für die Gastronomie gebaut, nicht als Tracking-Tool. Die Antworten stammen aus den Fragen der ersten Pilotbetreiber.</p>
+      <div class="faq__list">
+        <details open><summary><span>Q 01</span>Wer sieht welche Daten?</summary><p>Du als Betreiber siehst aggregierte Zahlen pro Tisch und pro Schicht. Personenbezogene Daten sehen nur die Gäste selbst auf ihrem eigenen Gerät. Drittparteien bekommen nichts.</p></details>
+        <details><summary><span>Q 02</span>Brauchen die Gäste einen Account?</summary><p>Nein. QR scannen reicht. Optional können sich Gäste für Loyalty oder Bestell-Historie registrieren. Das ist freiwillig und keine Voraussetzung.</p></details>
+        <details><summary><span>Q 03</span>Was passiert bei Drink-to-Table-Missbrauch?</summary><p>Der Empfänger blockt mit einem Tap. Sender bekommen Limits pro Stunde. Du als Betreiber kannst das Feature jederzeit pausieren oder für einzelne Tische deaktivieren.</p></details>
+        <details><summary><span>Q 04</span>Wo werden die Daten gespeichert?</summary><p>In zertifizierten Rechenzentren in Deutschland (Frankfurt). DSGVO-konform, mit AV-Vertrag und Auftragsverarbeitung. Keine Weitergabe an US-Anbieter ohne ausdrückliche Freigabe.</p></details>
+        <details><summary><span>Q 05</span>Was, wenn das Internet ausfällt?</summary><p>Bestellungen laufen über lokales Caching weiter. Sobald die Verbindung zurück ist, synchronisiert sich der Status. Die Crew-App ist offline-fähig, die Screens wechseln in den Idle-Modus mit lokalen Inhalten.</p></details>
+        <details><summary><span>Q 06</span>Kann ich das System wieder verlassen?</summary><p>Ja, monatlich kündbar. Export aller Daten als CSV und PDF inklusive. Keine Mindestlaufzeit, kein Lock-in. Die Hardware bleibt deine, weil wir keine verkaufen.</p></details>
+      </div>
+    </div>
+    <div class="gema" id="gema">
+      <p class="eyebrow eyebrow--day">GEMA, GVL, Tarife</p>
+      <h2 class="h2">Strukturiert, dokumentiert, planbar.</h2>
+      <p class="body-l">Wir helfen dir, Musik- und Screen-Nutzung sauber zu erfassen und zu verwalten. Was wir nicht behaupten: dass wir rechtliche Fragen automatisch für dich lösen.</p>
+      <div class="gema__cols">
+        <div class="gema__col gema__col--do">
+          <h3>Was wir tun</h3>
+          <ul>
+            <li>Location-Daten strukturiert erfassen: Fläche, Sitzplätze, Öffnungszeiten, Screens.</li>
+            <li>Musiknutzung pro Modus protokollieren: was lief, wann, wie lange.</li>
+            <li>Screens und Flächen pro Standort dokumentieren, samt Änderungen.</li>
+            <li>GEMA- und GVL-relevante Daten zentral halten und exportierbar machen.</li>
+            <li>Neue Screens, Flächen und Nutzungsszenarien zeitnah dokumentieren.</li>
+            <li>Optionaler Setup-Service: die Pilotwoche gemeinsam einrichten.</li>
+          </ul>
+        </div>
+        <div class="gema__col gema__col--dont">
+          <h3>Was wir nicht behaupten</h3>
+          <ul>
+            <li>Dass wir GEMA-Tarife automatisch berechnen oder anmelden.</li>
+            <li>Dass wir eine Rechtsberatung ersetzen oder Vollständigkeit garantieren.</li>
+            <li>Dass wir bei jeder neuen Gesetzeslage automatisch alles anpassen.</li>
+            <li>Dass die Software allein dich von Lizenzpflichten befreit.</li>
+            <li>Dass wir mit GEMA, GVL oder anderen Verwertungsgesellschaften verhandeln.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="klartext"><b>Klartext.</b> Crowd.Connect ist keine Compliance-Software im juristischen Sinne. Wir strukturieren und dokumentieren, damit du gegenüber Verwertungsgesellschaften und Behörden sprechfähig bist. Die Anmeldung und Tarifierung machst du selbst oder mit deinem Steuerberater. Wir geben dir das Material, mit dem es einfacher wird.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 · FINALE: PILOT ============ -->
+<section class="finale" id="pilot" aria-labelledby="pilot-title" data-scene="pilot">
+  <div class="finale__bg" aria-hidden="true"><img src="assets/img/entrance-1920.webp" srcset="assets/img/entrance-1280.webp 1280w, assets/img/entrance-1920.webp 1920w" sizes="(orientation: portrait) 180vh, 100vw" width="1920" height="1072" alt="" loading="lazy" decoding="async"></div>
+  <div class="neon" aria-hidden="true">
+    <div class="neon__sign"><span class="neon__name" data-neon>Deine Bar</span></div>
+    <p class="neon__plate"><span>Pilotlocation 2026</span><span data-neon-city>Deine Stadt</span></p>
+  </div>
+  <div class="finale__inner">
+    <div class="finale__copy">
+      <p class="world__label"><span>Nächster Freitag</span><span>21:14</span></p>
+      <h2 id="pilot-title" class="h2">Mach deinen Laden zur Pilotlocation.</h2>
+      <p class="body-l">Vier Wochen, ein System, eine Auswertung. Kein Vertrag, kein Risiko, keine versteckten Hardware-Kosten. Wenn es nicht zieht, drehst du es ab.</p>
+      <ul class="finale__stats">
+        <li><b>24 Std.</b>Antwortzeit auf jede Anfrage</li>
+        <li><b>1 Woche</b>bis zum Pilotstart in deiner Location</li>
+        <li><b>4 Wochen</b>Pilotlaufzeit, danach entscheidest du</li>
+      </ul>
+    </div>
+    <form class="pilotform" novalidate data-form>
+      <p class="pilotform__hint">Tipp den Namen deiner Location ein und schau nach oben.</p>
+      <div class="field">
+        <label for="f-bar">Bar / Location <span aria-hidden="true">*</span></label>
+        <input id="f-bar" name="bar" type="text" autocomplete="organization" maxlength="40" required aria-describedby="e-bar">
+        <p class="field__err" id="e-bar">Bitte gib den Namen deiner Bar ein.</p>
+      </div>
+      <div class="field">
+        <label for="f-city">Stadt <span aria-hidden="true">*</span></label>
+        <input id="f-city" name="city" type="text" autocomplete="address-level2" maxlength="40" required aria-describedby="e-city">
+        <p class="field__err" id="e-city">Bitte gib deine Stadt ein.</p>
+      </div>
+      <div class="field">
+        <label for="f-mail">E-Mail <span aria-hidden="true">*</span></label>
+        <input id="f-mail" name="email" type="email" autocomplete="email" required aria-describedby="e-mail">
+        <p class="field__err" id="e-mail">Bitte gib eine gültige E-Mail-Adresse ein.</p>
+      </div>
+      <div class="field">
+        <label for="f-msg">Nachricht <span class="field__opt">(optional)</span></label>
+        <textarea id="f-msg" name="message" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary btn--block">Pilot anfragen</button>
+      <p class="pilotform__err" data-form-error role="alert"></p>
+      <p class="pilotform__meta">hello@crowd-connect.de · Ein Service der QR Solutions GmbH</p>
+      <div class="pilotform__done" hidden tabindex="-1" data-form-done>
+        <svg class="ico"><use href="#i-check"/></svg>
+        <p><b>Anfrage angekommen.</b> Wir melden uns innerhalb von 24 Stunden. Oder schreib direkt an <a href="mailto:hello@crowd-connect.de">hello@crowd-connect.de</a>.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img src="assets/img/logo-long-white.png" alt="Crowd.Connect" width="176" height="29" loading="lazy">
+      <p>Die interaktive Plattform für Bars, Clubs, Shisha-Lounges, Restaurants und Eventlocations. Ein Service der QR Solutions GmbH, Hannover.</p>
+      <a class="textlink" href="mailto:hello@crowd-connect.de">hello@crowd-connect.de</a>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <div><p>System</p><a href="#bon">Schichtbuch</a><a href="#bar">Drink-to-Table</a><a href="#tv">TV-Integration</a><a href="#stammgaeste">Stammkundschaft</a><a href="#pakete">Pakete</a></div>
+      <div><p>Unternehmen</p><a href="https://www.qr-solutions.de" target="_blank" rel="noopener noreferrer">QR Solutions GmbH</a><a href="#crowd">Use Cases</a><a href="#zahlen">ROI</a><a href="mailto:hello@crowd-connect.de">Kontakt</a></div>
+      <div><p>Legal</p><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="#gema">Compliance</a></div>
+    </nav>
+  </div>
+  <p class="footer__legal">© 2026 QR Solutions GmbH · Alle Rechte vorbehalten · Szenen, Zahlen und Personen sind Beispiele, Bilder sind Symbolbilder.</p>
+</footer>
+
+<script src="assets/js/gsap.min.js" defer></script>
+<script src="assets/js/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>

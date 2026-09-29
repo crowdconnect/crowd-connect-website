@@ -15,14 +15,12 @@ Legacy full single-page site: `/legacy/classic.html` (redirect from `/classic.ht
 
 ## Structure
 
-- `app/` — Next.js routes (`page.tsx`, `api/contact/route.ts`)
-- `components/ui/` — shadcn-compatible UI primitives (e.g. `container-scroll-animation.tsx`)
-- `public/branding/` — Crowd.Connect logos, favicon; one Wedding.Connect logo for product-picker card
-- `public/media/` — hero video, poster, product preview image
+- `public/index.html` — marketing homepage (static redesign „Derselbe Abend. Zweimal.“). `/` rewrites here before the App Router page
+- `public/assets/` — styles, self-hosted fonts, GSAP, scene photos, logo, favicon, og-image
+- `app/api/contact/route.ts` — pilot form (`EMAIL_USER` / `EMAIL_PASS`)
 - `public/legal/` — impressum, datenschutz (rewritten to `/impressum`, `/datenschutz`)
-- `public/legacy/` — classic.html, classic.css (pre-migration monolith)
-- `public/fragments/` — HTML chunks loaded by React homepage
-- `public/scripts/` — consent, nav, demo-live client scripts
+- `public/branding/`, `public/media/`, `public/legacy/`, `public/fragments/`, `public/scripts/` — previous homepage assets
+- `app/page.tsx` and `components/` — previous React homepage, not served at `/`
 
 Wedding.Connect is a separate project: `wedding-connect-website/` on `wedding-connect.de`. The homepage product picker links there externally; `/wedding-connect` redirects with 301.
 

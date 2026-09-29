@@ -2,27 +2,27 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Crowd.Connect · Mach deine Bar interaktiv.",
+  title: "Crowd.Connect · Aus stillen Tischen wird eine Crowd.",
   description:
-    "Crowd.Connect ist das Betreiber-System für interaktive Bars: digitale Speisekarte, Drink-to-Table, TV-Games, Music Voting und GEMA-Dokumentation.",
+    "Crowd.Connect verbindet Tische, Smartphones und TVs in Bars, Clubs und Restaurants: digitale Speisekarte, Service-Ruf, Drink-to-Table, TV-Games, Music Voting und GEMA-Dokumentation. Ohne App, ohne Hardware-Kauf.",
   metadataBase: new URL("https://crowd-connect.de"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Crowd.Connect · Mach deine Bar interaktiv.",
+    title: "Crowd.Connect · Aus stillen Tischen wird eine Crowd.",
     description:
-      "Das Betreiber-System für moderne Bars und Venues. Mehr Umsatz, mehr Stammkunden, weniger Ärger mit GEMA.",
+      "Derselbe Abend, zweimal: einmal wie heute, einmal mit Crowd.Connect. Das Betreiber-System für Bars, Clubs und Restaurants.",
     type: "website",
     url: "https://crowd-connect.de/",
-    images: [{ url: "/media/hero-poster.jpg" }],
+    images: [{ url: "/assets/img/og-image.jpg" }],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/media/hero-poster.jpg"],
+    images: ["/assets/img/og-image.jpg"],
   },
   icons: {
-    icon: "/branding/CrowdConnect-icon.png",
+    icon: "/assets/img/favicon.svg",
     apple: "/branding/CrowdConnect-icon.png",
   },
 };

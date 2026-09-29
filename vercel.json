@@ -4,6 +4,7 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "rewrites": [
+    { "source": "/", "destination": "/index.html" },
     { "source": "/impressum", "destination": "/legal/impressum.html" },
     { "source": "/datenschutz", "destination": "/legal/datenschutz.html" }
   ],

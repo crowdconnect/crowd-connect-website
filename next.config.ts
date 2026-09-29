@@ -18,10 +18,13 @@ const nextConfig: NextConfig = {
     ],
   },
   async rewrites() {
-    return [
-      { source: "/impressum", destination: "/legal/impressum.html" },
-      { source: "/datenschutz", destination: "/legal/datenschutz.html" },
-    ];
+    return {
+      beforeFiles: [{ source: "/", destination: "/index.html" }],
+      afterFiles: [
+        { source: "/impressum", destination: "/legal/impressum.html" },
+        { source: "/datenschutz", destination: "/legal/datenschutz.html" },
+      ],
+    };
   },
   async redirects() {
     return [
